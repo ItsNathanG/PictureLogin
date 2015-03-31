@@ -1,0 +1,136 @@
+#################################################################
+#  _____ _      _                    _                 _        #
+# |  __ (_)    | |                  | |               (_)       #
+# | |__) |  ___| |_ _   _ _ __ ___  | |     ___   __ _ _ _ __   #
+# |  ___/ |/ __| __| | | | '__/ _ \ | |    / _ \ / _` | | '_ \  #
+# | |   | | (__| |_| |_| | | |  __/ | |___| (_) | (_| | | | | | #
+# |_|   |_|\___|\__|\__,_|_|  \___| |______\___/ \__, |_|_| |_| #
+#                                                 __/ |         #
+#                                                |___/          #
+#################################################################
+
+#############
+# Messsages
+########
+# Each message is a line, leave blank for a blank line
+# (If image height is 8, you can have eight lines; etc.)
+# Chat codes supported.
+########
+# Variables:
+# %pname%  - Joined player's name
+# %online% - Players online
+# %max%    - Maximum players
+# %motd%   - MOTD
+
+messages:
+    - '&2Super Awesome Mega Server'
+    - '%motd%'
+    - ''
+    - '&2%pname% &3joined the server!'
+    - '&2%online% &3/ &2%max%'
+    - ''
+    - ''
+    - '&4&kPicture Login by NathanG'
+
+#############
+# First Join Message
+######## 
+# Set to true to send a different messsage
+# when a player joins for the first
+# time. Refer to above for variables.
+
+show-first-join: true
+
+first-join-messages:
+    - '&2Super Awesome Mega Server'
+    - '%motd%'
+    - ''
+    - '&2%pname% &3joined the server!'
+    - '&3For the first time!'
+    - ''
+    - '&2%online% &3/ &2%max%'
+    - '&4&kPicture Login by NathanG'
+    
+#############
+# Leave Messages
+######## 
+# Set to true to send a 
+# message whenever a player
+# leaves the server. Refer
+# to top for variables.
+show-leave-message: false
+
+leave-messages:
+    - '&2Super Awesome Mega Server'
+    - '%motd%'
+    - ''
+    - '&2%pname% &3left the server!'
+    - '&2%online% &3/ &2%max%'
+    - ''
+    - ''
+    - '&4&kPicture Login by NathanG'
+
+#############
+# Clear Chat
+######## 
+# Set to true to clear the chat
+# before the message is sent.
+# Acceptable: [true|false]
+
+clear-chat: false
+
+#############
+# Center Text
+######## 
+# Whether or not to center
+# the text beside the image.
+# Acceptable: [true|false]
+
+center-text: true
+
+#############
+# Block join / leave messages
+######## 
+# Set to true to block
+# the default login
+# and logout messages.
+
+block-join-message: true
+block-leave-message: true
+
+#############
+# Show to player only
+######## 
+# Set to true to only send
+# the login message to
+# the player that joins.
+
+player-only: false
+
+#############
+# Image Character
+######## 
+# Change this to change what
+# character the image is made of.
+# IMO Block looks best. :3
+########
+# Acceptable:
+# - BLOCK
+# - DARK_SHADE
+# - MEDIUM_SHADE
+# - LIGHT_SHADE
+
+character: 'BLOCK'
+
+#############
+# URL
+######## 
+# Where to get the picture from.
+# By default it uses minotar.
+# You should probably leave this where it is.
+########
+# Variables:
+# %pname%  - Joined player's name
+# %uuid%   - Joined player's UUID
+
+url: 'https://crafatar.com/avatars/%uuid%.png'

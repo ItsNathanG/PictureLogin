@@ -126,7 +126,7 @@ character: 'BLOCK'
 # URL
 ######## 
 # Where to get the picture from.
-# By default it uses minotar.
+# By default it uses crafatar.
 # You should probably leave this where it is.
 ########
 # Variables:

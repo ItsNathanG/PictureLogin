@@ -34,12 +34,16 @@ public class BaseCommand implements CommandExecutor {
 						e.printStackTrace();
 						return false;
 					}
-					s.sendMessage("Config reloaded!");
+					s.sendMessage(ChatColor.GREEN + "PictureLogin " + ChatColor.GRAY + "» Configuration reloaded!");
 					return true;
 				}
 			} else {
-				s.sendMessage(ChatColor.DARK_GREEN + "Picture Login by TheNathanG");
-				s.sendMessage(ChatColor.DARK_GREEN + "Use /picturelogin reload to reload the config!");
+			    s.sendMessage(ChatColor.GREEN + "PictureLogin " + ChatColor.GRAY + "v" +
+                                 ChatColor.GREEN + plugin.getDescription().getVersion() + ChatColor.GRAY + " by " +
+                                 ChatColor.GREEN + "NathanG");
+			    s.sendMessage(ChatColor.GRAY + "» " + ChatColor.GREEN + "/picturelogin reload" +
+                                 ChatColor.GRAY + " to reload the config file.");
+
 				return true;
 			}
 		}

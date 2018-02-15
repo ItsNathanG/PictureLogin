@@ -1,6 +1,4 @@
-# Eclipse stuff
-bin/
-.classpath
-.project
-.settings/
+# IntelliJ
+.idea/
+*.iml
 

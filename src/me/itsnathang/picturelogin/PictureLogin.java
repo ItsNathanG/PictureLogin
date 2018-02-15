@@ -1,7 +1,7 @@
 package me.itsnathang.picturelogin;
 
-import me.itsnathang.picturelogin.Listeners.JoinListener;
-import me.itsnathang.picturelogin.Listeners.QuitListener;
+import me.itsnathang.picturelogin.listeners.JoinListener;
+import me.itsnathang.picturelogin.listeners.QuitListener;
 import me.itsnathang.picturelogin.commands.BaseCommand;
 import me.itsnathang.picturelogin.config.ConfigManager;
 import org.bukkit.command.CommandExecutor;

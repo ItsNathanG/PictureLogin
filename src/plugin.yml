@@ -1,7 +1,7 @@
 name: PictureLogin
 main: me.itsnathang.picturelogin.PictureLogin
 author: NathanG
-version: 1.1
+version: 1.2
 commands:
   picturelogin:
     description: Picture Login command.

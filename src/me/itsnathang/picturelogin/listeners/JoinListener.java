@@ -1,4 +1,4 @@
-package me.itsnathang.picturelogin.Listeners;
+package me.itsnathang.picturelogin.listeners;
 
 import java.util.List;
 
@@ -27,14 +27,14 @@ public class JoinListener implements Listener {
 		if(!player.hasPermission("picturelogin.show"))
 			return;
 		
-		if (plugin.getConfig().getBoolean("block-login-message") == true)
+		if (plugin.getConfig().getBoolean("block-login-message"))
 			event.setJoinMessage(null);
 		
 		new BukkitRunnable() {
 			@Override
 			public void run() {
 				
-				if(player.hasPlayedBefore() == false && plugin.getConfig().getBoolean("show-first-join") == true) {
+				if(!player.hasPlayedBefore() && plugin.getConfig().getBoolean("show-first-join")) {
 						new BukkitRunnable() {
 				            @Override
 				            public void run() {
@@ -47,10 +47,10 @@ public class JoinListener implements Listener {
 									num++;
 								}
 								
-								if (plugin.getConfig().getBoolean("player-only") == false) {
+								if (!plugin.getConfig().getBoolean("player-only")) {
 									for (Player p : Bukkit.getServer().getOnlinePlayers()) {
 										
-										if (plugin.getConfig().getBoolean("clear-chat") == true) {
+										if (plugin.getConfig().getBoolean("clear-chat")) {
 											for(int i=0;i<20;i++) {
 												player.sendMessage("");
 											}
@@ -60,7 +60,7 @@ public class JoinListener implements Listener {
 										
 									}        
 								} else {
-									if (plugin.getConfig().getBoolean("clear-chat") == true) {
+									if (plugin.getConfig().getBoolean("clear-chat")) {
 										for(int i=0;i<20;i++) {
 											event.getPlayer().sendMessage("");
 										}
@@ -69,7 +69,6 @@ public class JoinListener implements Listener {
 									ConfigManager.getMessage(messages, PictureUtil.getImage(player)).sendToPlayer(player);
 									
 								}
-								return;
 				            }
 				        }.runTaskAsynchronously(JoinListener.plugin);
 				} else {
@@ -86,9 +85,9 @@ public class JoinListener implements Listener {
 			            		num++;
 			            	}
 			            	
-							if (plugin.getConfig().getBoolean("player-only") == false) {
+							if (plugin.getConfig().getBoolean("player-only")) {
 								for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-									if (plugin.getConfig().getBoolean("clear-chat") == true) {
+									if (plugin.getConfig().getBoolean("clear-chat")) {
 										for(int i=0;i<20;i++) {
 											player.sendMessage("");
 										}
@@ -99,7 +98,7 @@ public class JoinListener implements Listener {
 								
 							} else {
 								
-								if (plugin.getConfig().getBoolean("clear-chat") == true) {
+								if (plugin.getConfig().getBoolean("clear-chat")) {
 									for(int i=0;i<20;i++) {
 										event.getPlayer().sendMessage("");
 									}

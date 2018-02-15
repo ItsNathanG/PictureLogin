@@ -27,7 +27,7 @@ public class JoinListener implements Listener {
 		if(!player.hasPermission("picturelogin.show"))
 			return;
 		
-		if (plugin.getConfig().getBoolean("block-login-message"))
+		if (plugin.getConfig().getBoolean("block-join-message"))
 			event.setJoinMessage(null);
 		
 		new BukkitRunnable() {

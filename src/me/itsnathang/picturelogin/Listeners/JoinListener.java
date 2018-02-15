@@ -1,4 +1,4 @@
-package com.thenathang.picturelogin.Listeners;
+package me.itsnathang.picturelogin.Listeners;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import com.thenathang.picturelogin.PictureLogin;
-import com.thenathang.picturelogin.config.ConfigManager;
-import com.thenathang.picturelogin.util.PictureUtil;
+import me.itsnathang.picturelogin.PictureLogin;
+import me.itsnathang.picturelogin.config.ConfigManager;
+import me.itsnathang.picturelogin.util.PictureUtil;
 
 public class JoinListener implements Listener {
 	static PictureLogin plugin;

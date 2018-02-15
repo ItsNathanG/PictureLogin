@@ -1,13 +1,13 @@
-package com.thenathang.picturelogin;
+package me.itsnathang.picturelogin;
 
+import me.itsnathang.picturelogin.Listeners.JoinListener;
+import me.itsnathang.picturelogin.Listeners.QuitListener;
+import me.itsnathang.picturelogin.commands.BaseCommand;
+import me.itsnathang.picturelogin.config.ConfigManager;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.thenathang.picturelogin.Listeners.JoinListener;
-import com.thenathang.picturelogin.Listeners.QuitListener;
-import com.thenathang.picturelogin.commands.BaseCommand;
-import com.thenathang.picturelogin.config.ConfigManager;
-import com.thenathang.picturelogin.util.PictureUtil;
+import me.itsnathang.picturelogin.util.PictureUtil;
 
 
 public class PictureLogin extends JavaPlugin implements CommandExecutor {

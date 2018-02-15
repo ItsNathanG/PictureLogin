@@ -1,15 +1,14 @@
-package com.thenathang.picturelogin.util;
+package me.itsnathang.picturelogin.util;
 
 import java.awt.image.BufferedImage;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import me.itsnathang.picturelogin.PictureLogin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-
-import com.thenathang.picturelogin.PictureLogin;
 
 public class PictureUtil {
 	private static PictureLogin plugin;

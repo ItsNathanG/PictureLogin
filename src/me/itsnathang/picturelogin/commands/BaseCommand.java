@@ -1,4 +1,4 @@
-package com.thenathang.picturelogin.commands;
+package me.itsnathang.picturelogin.commands;
 
 import java.io.File;
 
@@ -7,7 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import com.thenathang.picturelogin.PictureLogin;
+import me.itsnathang.picturelogin.PictureLogin;
 
 public class BaseCommand implements CommandExecutor {
 	PictureLogin plugin;

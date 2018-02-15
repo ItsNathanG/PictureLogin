@@ -1,4 +1,4 @@
-package com.thenathang.picturelogin.config;
+package me.itsnathang.picturelogin.config;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.bobacadodl.imgmessage.ImageChar;
 import com.bobacadodl.imgmessage.ImageMessage;
-import com.thenathang.picturelogin.PictureLogin;
+import me.itsnathang.picturelogin.PictureLogin;
 
 public class ConfigManager {
 	static YamlConfiguration config;

@@ -17,10 +17,11 @@
 # Chat codes supported.
 ########
 # Variables:
-# %pname%  - Joined player's name
-# %online% - Players online
-# %max%    - Maximum players
-# %motd%   - MOTD
+# %pname%       - Joined player's name (no formatting)
+# %online%      - Players online
+# %max%         - Maximum players
+# %motd%        - MOTD
+# %displayname% - Joined player's display name
 
 messages:
     - ''

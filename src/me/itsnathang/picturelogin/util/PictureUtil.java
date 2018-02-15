@@ -42,6 +42,7 @@ public class PictureUtil {
 		m = m.replace("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
 		m = m.replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
 		m = m.replace("%motd%", Bukkit.getMotd());
+		m = m.replace("%displayname%", player.getDisplayName());
 		return m;
 	}
 	

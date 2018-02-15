@@ -23,18 +23,18 @@
 # %motd%   - MOTD
 
 messages:
-    - '&2Super Awesome Mega Server'
-    - '%motd%'
     - ''
-    - '&2%pname% &3joined the server!'
-    - '&2%online% &3/ &2%max%'
+    - '&5Welcome to &dGeneric Server Name&5!'
     - ''
+    - '&7» [&e%online%&7/&e%max%&7] player(s) online.'
+    - '&7» &aNEW: &7Feature X added!'
     - ''
-    - '&4&kPicture Login by NathanG'
+    - '&7» &aPictureLogin &7by &aNathanG&7.'
+    - ''
 
 #############
 # First Join Message
-######## 
+########
 # Set to true to send a different messsage
 # when a player joins for the first
 # time. Refer to above for variables.
@@ -42,37 +42,37 @@ messages:
 show-first-join: true
 
 first-join-messages:
-    - '&2Super Awesome Mega Server'
-    - '%motd%'
     - ''
-    - '&2%pname% &3joined the server!'
-    - '&3For the first time!'
+    - '&5Welcome to &dGeneric Server Name&5!'
     - ''
-    - '&2%online% &3/ &2%max%'
-    - '&4&kPicture Login by NathanG'
-    
+    - '&7» [&e%online%&7/&e%max%&7] player(s) online.'
+    - '&7» &aNEW: &7Feature X added!'
+    - ''
+    - '&7Please welcome &a%pname% &7to the server!'
+    - ''
+
 #############
 # Leave Messages
-######## 
-# Set to true to send a 
+########
+# Set to true to send a
 # message whenever a player
 # leaves the server. Refer
 # to top for variables.
 show-leave-message: false
 
 leave-messages:
-    - '&2Super Awesome Mega Server'
-    - '%motd%'
     - ''
-    - '&2%pname% &3left the server!'
-    - '&2%online% &3/ &2%max%'
+    - '&5Welcome to &dGeneric Server Name&5!'
     - ''
+    - '&7» [&e%online%&7/&e%max%&7] player(s) online.'
+    - '&7» &aNEW: &7Feature X added!'
     - ''
-    - '&4&kPicture Login by NathanG'
+    - '&7» &aPictureLogin &7by &aNathanG&7.'
+    - ''
 
 #############
 # Clear Chat
-######## 
+########
 # Set to true to clear the chat
 # before the message is sent.
 # Acceptable: [true|false]
@@ -81,16 +81,16 @@ clear-chat: false
 
 #############
 # Center Text
-######## 
+########
 # Whether or not to center
 # the text beside the image.
 # Acceptable: [true|false]
 
-center-text: true
+center-text: false
 
 #############
 # Block join / leave messages
-######## 
+########
 # Set to true to block
 # the default login
 # and logout messages.
@@ -100,12 +100,12 @@ block-leave-message: true
 
 #############
 # Show to player only
-######## 
+########
 # Set to true to only send
 # the login message to
 # the player that joins.
 
-player-only: false
+player-only: true
 
 #############
 # Image Character

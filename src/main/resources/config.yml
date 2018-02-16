@@ -134,4 +134,4 @@ character: 'BLOCK'
 # %pname%  - Joined player's name
 # %uuid%   - Joined player's UUID
 
-url: 'https://crafatar.com/avatars/%uuid%.png'
+url: 'https://crafatar.com/avatars/%uuid%.png?size=8&overlay&default=MHF_Steve'

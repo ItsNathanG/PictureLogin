@@ -54,5 +54,12 @@ public class ConfigManager {
 		else
 			return new ImageMessage(image, 8, getChar()).appendText(messages.get(0),messages.get(1),messages.get(2),messages.get(3),messages.get(4),messages.get(5),messages.get(6),messages.get(7));
 	}
+
+	public static boolean getMetrics() {
+		if (!config.getBoolean("metrics"))
+			return false;
+
+		return true;
+	}
 	
 }

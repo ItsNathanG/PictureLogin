@@ -113,7 +113,6 @@ player-only: true
 ######## 
 # Change this to change what
 # character the image is made of.
-# IMO Block looks best. :3
 ########
 # Acceptable:
 # - BLOCK
@@ -135,3 +134,11 @@ character: 'BLOCK'
 # %uuid%   - Joined player's UUID
 
 url: 'https://crafatar.com/avatars/%uuid%.png?size=8&overlay&default=MHF_Steve'
+
+#############
+# Metrics
+########
+# Allow this plugin to send anonymous metrics
+# to bStats? https://bstats.org/
+# Set to false to disable.
+metrics: true

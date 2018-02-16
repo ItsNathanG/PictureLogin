@@ -23,7 +23,8 @@ public class PictureLogin extends JavaPlugin implements CommandExecutor {
 		new ConfigManager(this);
 
 		// bStats integration
-		new MetricsLite(this);
+		if (ConfigManager.getMetrics())
+			new MetricsLite(this);
 	}
 	
 	@Override

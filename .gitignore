@@ -3,3 +3,6 @@
 *.iml
 out/
 src/META-INF/
+
+# Maven
+target/

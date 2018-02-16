@@ -1,5 +1,6 @@
 package me.itsnathang.picturelogin.listeners;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -35,6 +36,11 @@ public class QuitListener implements Listener {
 			new BukkitRunnable() {
 	            @Override
 	            public void run() {
+					BufferedImage skin = PictureUtil.getImage(player);
+
+					if (skin == null)
+						return;
+
 	            	List<String> messages = plugin.getConfig().getStringList("leave-messages");
 	    			int num = -1;
 	    			
@@ -52,7 +58,7 @@ public class QuitListener implements Listener {
 	    					}
 	    				}
 	    				
-	    				ConfigManager.getMessage(messages, PictureUtil.getImage(p));
+	    				ConfigManager.getMessage(messages, skin);
 	    				
 	    			}
 	            }

@@ -1,7 +1,9 @@
 package me.itsnathang.picturelogin.listeners;
 
+import java.awt.image.BufferedImage;
 import java.util.List;
 
+import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,7 +31,7 @@ public class JoinListener implements Listener {
 		
 		if (plugin.getConfig().getBoolean("block-join-message"))
 			event.setJoinMessage(null);
-		
+
 		new BukkitRunnable() {
 			@Override
 			public void run() {
@@ -40,6 +42,10 @@ public class JoinListener implements Listener {
 				            public void run() {
 								List<String> messages = plugin.getConfig().getStringList("first-join-messages");
 								int num = 0;
+                                BufferedImage skin = PictureUtil.getImage(player);
+
+                                if (skin == null)
+                                    return;
 								
 								for (String string : messages) {
 									string = PictureUtil.replaceThings(string, player);
@@ -56,7 +62,7 @@ public class JoinListener implements Listener {
 											}
 										}
 										
-										ConfigManager.getMessage(messages, PictureUtil.getImage(player)).sendToPlayer(p);
+										ConfigManager.getMessage(messages, skin).sendToPlayer(p);
 										
 									}        
 								} else {
@@ -66,7 +72,7 @@ public class JoinListener implements Listener {
 										}
 									}
 
-									ConfigManager.getMessage(messages, PictureUtil.getImage(player)).sendToPlayer(player);
+									ConfigManager.getMessage(messages, skin).sendToPlayer(player);
 									
 								}
 				            }
@@ -78,6 +84,10 @@ public class JoinListener implements Listener {
 					
 			            	List<String> messages = plugin.getConfig().getStringList("messages");
 			            	int num = 0;
+                            BufferedImage skin = PictureUtil.getImage(player);
+
+                            if (skin == null)
+                                return;
 					
 			            	for (String string : messages) {
 			            		string = PictureUtil.replaceThings(string, player);
@@ -93,7 +103,7 @@ public class JoinListener implements Listener {
 										}
 									}
 		
-									ConfigManager.getMessage(messages, PictureUtil.getImage(player)).sendToPlayer(p);
+									ConfigManager.getMessage(messages, skin).sendToPlayer(p);
 								}    
 								
 							} else {
@@ -104,7 +114,7 @@ public class JoinListener implements Listener {
 									}
 								}
 
-								ConfigManager.getMessage(messages, PictureUtil.getImage(player)).sendToPlayer(player);
+								ConfigManager.getMessage(messages, skin).sendToPlayer(player);
 							}
 			            }
 			        }.runTaskAsynchronously(JoinListener.plugin);

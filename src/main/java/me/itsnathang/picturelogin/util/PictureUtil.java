@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 import me.itsnathang.picturelogin.PictureLogin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.libs.jline.internal.Log;
 import org.bukkit.entity.Player;
 
 public class PictureUtil {
@@ -30,7 +29,7 @@ public class PictureUtil {
 		try {
 			image = ImageIO.read(newURL(player));
 		} catch (Exception e) {
-			Log.warn("[PictureLogin] Could not retrieve avatar from URL. Please check your config file.");
+			Bukkit.getLogger().warning("[PictureLogin] Could not retrieve avatar from URL. Please check your config file.");
 		}
 		
 		return image;

@@ -33,12 +33,10 @@ public class JoinListener implements Listener {
 			event.setJoinMessage(null);
 
 		new BukkitRunnable() {
-			@Override
 			public void run() {
 				
 				if(!player.hasPlayedBefore() && plugin.getConfig().getBoolean("show-first-join")) {
 						new BukkitRunnable() {
-				            @Override
 				            public void run() {
 								List<String> messages = plugin.getConfig().getStringList("first-join-messages");
 								int num = 0;
@@ -79,7 +77,6 @@ public class JoinListener implements Listener {
 				        }.runTaskAsynchronously(JoinListener.plugin);
 				} else {
 					new BukkitRunnable() {
-			            @Override
 			            public void run() {
 					
 			            	List<String> messages = plugin.getConfig().getStringList("messages");

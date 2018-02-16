@@ -34,7 +34,6 @@ public class QuitListener implements Listener {
 		
 		if (plugin.getConfig().getBoolean("show-leave-message")) {
 			new BukkitRunnable() {
-	            @Override
 	            public void run() {
 					BufferedImage skin = PictureUtil.getImage(player);
 

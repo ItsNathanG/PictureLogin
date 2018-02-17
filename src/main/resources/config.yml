@@ -25,7 +25,7 @@
 
 messages:
     - ''
-    - '&5Welcome to &dGeneric Server Name&5!'
+    - '&7Welcome to &e&lGeneric Server Name&7!'
     - ''
     - '&7» [&e%online%&7/&e%max%&7] player(s) online.'
     - '&7» &aNEW: &7Feature X added!'
@@ -44,7 +44,7 @@ show-first-join: true
 
 first-join-messages:
     - ''
-    - '&5Welcome to &dGeneric Server Name&5!'
+    - '&7Welcome to &e&lGeneric Server Name&7!'
     - ''
     - '&7» [&e%online%&7/&e%max%&7] player(s) online.'
     - '&7» &aNEW: &7Feature X added!'
@@ -59,12 +59,11 @@ first-join-messages:
 # message whenever a player
 # leaves the server. Refer
 # to top for variables.
-
 show-leave-message: false
 
 leave-messages:
     - ''
-    - '&5Welcome to &dGeneric Server Name&5!'
+    - '&e%pname &7has left the server!'
     - ''
     - '&7» [&e%online%&7/&e%max%&7] player(s) online.'
     - '&7» &aNEW: &7Feature X added!'

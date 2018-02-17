@@ -16,15 +16,15 @@ import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.util.PictureUtil;
 
 public class JoinListener implements Listener {
-	static PictureLogin plugin;
+	private static PictureLogin plugin;
 
 	public JoinListener(PictureLogin plugin) {
 	  JoinListener.plugin = plugin;
 	}
 	
 	@EventHandler
-	public void onJoin(final PlayerJoinEvent event) {
-		final Player player = event.getPlayer();
+	public void onJoin(PlayerJoinEvent event) {
+		Player player = event.getPlayer();
 		
 		if(!player.hasPermission("picturelogin.show"))
 			return;
@@ -32,92 +32,40 @@ public class JoinListener implements Listener {
 		if (plugin.getConfig().getBoolean("block-join-message"))
 			event.setJoinMessage(null);
 
-		new BukkitRunnable() {
-			public void run() {
-				
-				if(!player.hasPlayedBefore() && plugin.getConfig().getBoolean("show-first-join")) {
-						new BukkitRunnable() {
-				            public void run() {
-								List<String> messages = plugin.getConfig().getStringList("first-join-messages");
-								int num = 0;
-                                BufferedImage skin = PictureUtil.getImage(player);
+		Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+			BufferedImage picture = PictureUtil.getImage(player);
+			List<String> picture_message;
 
-                                if (skin == null)
-                                    return;
-								
-								for (String string : messages) {
-									string = PictureUtil.replaceThings(string, player);
-									messages.set(num, string);
-									num++;
-								}
-								
-								if (!plugin.getConfig().getBoolean("player-only")) {
-									for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-										
-										if (plugin.getConfig().getBoolean("clear-chat")) {
-											for(int i=0;i<20;i++) {
-												player.sendMessage("");
-											}
-										}
-										
-										ConfigManager.getMessage(messages, skin).sendToPlayer(p);
-										
-									}        
-								} else {
-									if (plugin.getConfig().getBoolean("clear-chat")) {
-										for(int i=0;i<20;i++) {
-											event.getPlayer().sendMessage("");
-										}
-									}
+			// Show a different message on a first player join
+			if(!player.hasPlayedBefore() && plugin.getConfig().getBoolean("show-first-join"))
+				picture_message = plugin.getConfig().getStringList("first-join-messages");
+			else
+				picture_message = plugin.getConfig().getStringList("messages");
 
-									ConfigManager.getMessage(messages, skin).sendToPlayer(player);
-									
-								}
-				            }
-				        }.runTaskAsynchronously(JoinListener.plugin);
-				} else {
-					new BukkitRunnable() {
-			            public void run() {
-					
-			            	List<String> messages = plugin.getConfig().getStringList("messages");
-			            	int num = 0;
-                            BufferedImage skin = PictureUtil.getImage(player);
+			// TODO: Add default picture backup.
+			if (picture == null)
+				return;
 
-                            if (skin == null)
-                                return;
-					
-			            	for (String string : messages) {
-			            		string = PictureUtil.replaceThings(string, player);
-			            		messages.set(num, string);
-			            		num++;
-			            	}
-			            	
-							if (!plugin.getConfig().getBoolean("player-only")) {
-								for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-									if (plugin.getConfig().getBoolean("clear-chat")) {
-										for(int i=0;i<20;i++) {
-											player.sendMessage("");
-										}
-									}
-		
-									ConfigManager.getMessage(messages, skin).sendToPlayer(p);
-								}    
-								
-							} else {
-								
-								if (plugin.getConfig().getBoolean("clear-chat")) {
-									for(int i=0;i<20;i++) {
-										event.getPlayer().sendMessage("");
-									}
-								}
+			// TODO: Implement PlaceholderAPI
+			// Replace messages with our variables
+			picture_message.replaceAll(message -> PictureUtil.replaceThings(message, player));
 
-								ConfigManager.getMessage(messages, skin).sendToPlayer(player);
-							}
-			            }
-			        }.runTaskAsynchronously(JoinListener.plugin);
-				}
-			            
+			// Only show picture message to the player that logged in
+			if (plugin.getConfig().getBoolean("player-only")) {
+				ConfigManager.getMessage(picture_message, picture).sendToPlayer(player);
+				return;
 			}
-		}.runTaskLater(plugin, 3);
+
+			// Send picture message to all online players
+			Bukkit.getOnlinePlayers().forEach((online_player) -> {
+				if (plugin.getConfig().getBoolean("clear-chat"))
+					for(int i=0;i<20;i++)
+						online_player.sendMessage("");
+				
+				ConfigManager.getMessage(picture_message, picture).sendToPlayer(online_player);
+				return;
+			});
+
+		});
 	}
 }

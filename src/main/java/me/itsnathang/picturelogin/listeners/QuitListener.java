@@ -15,53 +15,44 @@ import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.util.PictureUtil;
 
 public class QuitListener implements Listener {
-	static PictureLogin plugin;
+	private static PictureLogin plugin;
 
 	public QuitListener(PictureLogin plugin) {
 	  QuitListener.plugin = plugin;
 	}
 	
 	@EventHandler
-	public void onQuit(final PlayerQuitEvent event) {
-		final Player player = event.getPlayer();
+	public void onQuit(PlayerQuitEvent event) {
+		Player player = event.getPlayer();
 		
-		if(!player.hasPermission("picturelogin.show"))
+		if(!player.hasPermission("picturelogin.show") || !plugin.getConfig().getBoolean("show-leave-message"))
 			return;
 		
-		if (plugin.getConfig().getBoolean("block-leave-message") || !plugin.getConfig().getBoolean("show-leave-message")) {
+		if (plugin.getConfig().getBoolean("block-leave-message"))
 			event.setQuitMessage(null);
-		}
-		
-		if (plugin.getConfig().getBoolean("show-leave-message")) {
-			new BukkitRunnable() {
-	            public void run() {
-					BufferedImage skin = PictureUtil.getImage(player);
 
-					if (skin == null)
-						return;
+		Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+			BufferedImage picture = PictureUtil.getImage(player);
+			List<String> picture_message;
 
-	            	List<String> messages = plugin.getConfig().getStringList("leave-messages");
-	    			int num = -1;
-	    			
-	    			for (String string : messages) {
-	    				num++;
-	    				string = PictureUtil.replaceThings(string, player);
-	    				messages.set(num, string);
-	    			}
-	    			
-	    			for (Player p : Bukkit.getServer().getOnlinePlayers()) {
-	    				
-	    				if (plugin.getConfig().getBoolean("clear-chat")) {
-	    					for(int i=0;i<20;i++) {
-	    						player.sendMessage("");
-	    					}
-	    				}
-	    				
-	    				ConfigManager.getMessage(messages, skin);
-	    				
-	    			}
-	            }
-	        }.runTaskAsynchronously(QuitListener.plugin);
-		}
+			picture_message = plugin.getConfig().getStringList("leave-messages");
+
+			// TODO: Add default picture backup.
+			if (picture == null)
+				return;
+
+			// TODO: Implement PlaceholderAPI
+			// Replace messages with our variables
+			picture_message.replaceAll(message -> PictureUtil.replaceThings(message, player));
+
+			// Send picture message to all online players
+			Bukkit.getOnlinePlayers().forEach((online_player) -> {
+				if (plugin.getConfig().getBoolean("clear-chat"))
+					for(int i=0;i<20;i++)
+						online_player.sendMessage("");
+
+				ConfigManager.getMessage(picture_message, picture).sendToPlayer(online_player);
+			});
+		});
 	}
 }

@@ -10,6 +10,8 @@ import org.bstats.bukkit.MetricsLite;
 
 import me.itsnathang.picturelogin.util.PictureUtil;
 
+import static org.bukkit.Bukkit.getPluginManager;
+
 
 public class PictureLogin extends JavaPlugin implements CommandExecutor {
 	@Override
@@ -26,7 +28,7 @@ public class PictureLogin extends JavaPlugin implements CommandExecutor {
 		// /picturelogin command
 		getCommand("picturelogin").setExecutor(new BaseCommand(this));
 
-		new PictureUtil(this);
+		new PictureUtil(this, getPluginManager().isPluginEnabled("PlaceholderAPI"));
 
 		// bStats integration
 		if (ConfigManager.getMetrics())

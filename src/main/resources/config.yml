@@ -22,6 +22,9 @@
 # %max%         - Maximum players
 # %motd%        - MOTD
 # %displayname% - Joined player's display name
+########
+# NOTE: You may also use variables from the plugin
+#       PlaceholderAPI if it is installed.
 
 messages:
     - ''

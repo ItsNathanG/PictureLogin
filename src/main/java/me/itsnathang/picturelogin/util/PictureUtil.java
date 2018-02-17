@@ -5,6 +5,7 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import me.itsnathang.picturelogin.PictureLogin;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,12 +13,14 @@ import org.bukkit.entity.Player;
 
 public class PictureUtil {
 	private static PictureLogin plugin;
+	private static boolean placeholder_api_enabled;
 	
-	public PictureUtil(PictureLogin  p) {
+	public PictureUtil(PictureLogin p, Boolean placeholder_api) {
 		plugin = p;
+		placeholder_api_enabled = placeholder_api;
 	}
 	
-	public static URL newURL(Player player) throws Exception {
+	private static URL newURL(Player player) throws Exception {
 		String url = plugin.getConfig().getString("url");
 		url = url.replace("%pname%", player.getName()).replace("%uuid%", player.getUniqueId().toString());
 		return new URL(url);
@@ -43,6 +46,10 @@ public class PictureUtil {
 		m = m.replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
 		m = m.replace("%motd%", Bukkit.getMotd());
 		m = m.replace("%displayname%", player.getDisplayName());
+
+		if (placeholder_api_enabled)
+			m = PlaceholderAPI.setPlaceholders(player, m);
+
 		return m;
 	}
 	

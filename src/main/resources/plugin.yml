@@ -2,6 +2,7 @@ name: PictureLogin
 main: me.itsnathang.picturelogin.PictureLogin
 author: NathanG
 version: ${version}
+softdepend: [PlaceholderAPI]
 commands:
   picturelogin:
     description: Picture Login command.

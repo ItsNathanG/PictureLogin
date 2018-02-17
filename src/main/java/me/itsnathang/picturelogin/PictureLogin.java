@@ -14,6 +14,8 @@ import me.itsnathang.picturelogin.util.PictureUtil;
 public class PictureLogin extends JavaPlugin implements CommandExecutor {
 	@Override
 	public void onEnable() {
+		// Load config file
+		new ConfigManager(this);
 
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 
@@ -23,9 +25,8 @@ public class PictureLogin extends JavaPlugin implements CommandExecutor {
 
 		// /picturelogin command
 		getCommand("picturelogin").setExecutor(new BaseCommand(this));
-		
+
 		new PictureUtil(this);
-		new ConfigManager(this);
 
 		// bStats integration
 		if (ConfigManager.getMetrics())

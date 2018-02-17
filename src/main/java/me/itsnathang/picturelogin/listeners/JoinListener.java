@@ -61,9 +61,8 @@ public class JoinListener implements Listener {
 				if (plugin.getConfig().getBoolean("clear-chat"))
 					for(int i=0;i<20;i++)
 						online_player.sendMessage("");
-				
+
 				ConfigManager.getMessage(picture_message, picture).sendToPlayer(online_player);
-				return;
 			});
 
 		});

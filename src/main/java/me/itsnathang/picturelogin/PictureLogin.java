@@ -16,7 +16,12 @@ public class PictureLogin extends JavaPlugin implements CommandExecutor {
 	public void onEnable() {
 
 		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
-		getServer().getPluginManager().registerEvents(new QuitListener(this), this);
+
+		// Only register listener if enabled in config
+		if (getConfig().getBoolean("show-leave-message"))
+			getServer().getPluginManager().registerEvents(new QuitListener(this), this);
+
+		// /picturelogin command
 		getCommand("picturelogin").setExecutor(new BaseCommand(this));
 		
 		new PictureUtil(this);

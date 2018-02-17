@@ -92,7 +92,7 @@ public class JoinListener implements Listener {
 			            		num++;
 			            	}
 			            	
-							if (plugin.getConfig().getBoolean("player-only")) {
+							if (!plugin.getConfig().getBoolean("player-only")) {
 								for (Player p : Bukkit.getServer().getOnlinePlayers()) {
 									if (plugin.getConfig().getBoolean("clear-chat")) {
 										for(int i=0;i<20;i++) {

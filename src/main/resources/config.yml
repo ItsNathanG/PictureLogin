@@ -59,6 +59,7 @@ first-join-messages:
 # message whenever a player
 # leaves the server. Refer
 # to top for variables.
+
 show-leave-message: false
 
 leave-messages:
@@ -96,8 +97,8 @@ center-text: false
 # the default login
 # and logout messages.
 
-block-join-message: true
-block-leave-message: true
+block-join-message: false
+block-leave-message: false
 
 #############
 # Show to player only

@@ -16,6 +16,8 @@ public class ConfigManager {
 	
 	public ConfigManager(PictureLogin p) {
 		plugin = p;
+
+		new LanguageManager(p);
 		
 		reloadConfig();
 	}
@@ -55,11 +57,14 @@ public class ConfigManager {
 			return new ImageMessage(image, 8, getChar()).appendText(messages.get(0),messages.get(1),messages.get(2),messages.get(3),messages.get(4),messages.get(5),messages.get(6),messages.get(7));
 	}
 
-	public static boolean getMetrics() {
-		if (!config.getBoolean("metrics"))
-			return false;
-
-		return true;
+	public static boolean getBoolean(String key) {
+		return config.getBoolean(key);
 	}
+
+	public static List<String> getStringList(String key) {
+		return config.getStringList(key);
+	}
+
+	public static String getURL() { return config.getString("url"); }
 	
 }

@@ -10,8 +10,6 @@ public class FallbackPicture {
 
     FallbackPicture(PictureLogin plugin) {
         FallbackPicture.plugin = plugin;
-
-        reload();
     }
 
     public static void reload() {

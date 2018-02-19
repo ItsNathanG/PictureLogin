@@ -21,8 +21,8 @@ public class PictureLogin extends JavaPlugin implements CommandExecutor {
 		this.getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 
 		// (only register leave listener if enabled in config)
-		if (ConfigManager.getBoolean("show-leave-message"))
-			this.getServer().getPluginManager().registerEvents(new QuitListener(this), this);
+		if (ConfigManager.getBoolean("show-leave-message", false))
+			this.getServer().getPluginManager().registerEvents(new QuitListener(), this);
 
 		// register /picturelogin command
 		getCommand("picturelogin").setExecutor(new BaseCommand(this));
@@ -31,7 +31,7 @@ public class PictureLogin extends JavaPlugin implements CommandExecutor {
 		new PictureUtil(this);
 
 		// bStats integration
-		if (ConfigManager.getBoolean("metrics"))
+		if (ConfigManager.getBoolean("metrics", true))
 			new MetricsLite(this);
 	}
 	

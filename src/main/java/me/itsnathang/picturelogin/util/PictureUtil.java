@@ -35,7 +35,7 @@ public class PictureUtil {
 		} catch (Exception e) { return null; }
 	}
 	
-	public static BufferedImage getImage(String player_uuid) {
+	private static BufferedImage getImage(String player_uuid) {
 		URL head_image = newURL(player_uuid);
 
 		// URL Formatted correctly.
@@ -68,7 +68,7 @@ public class PictureUtil {
 
 	public static void sendOutPictureMessage(ImageMessage picture_message) {
         plugin.getServer().getOnlinePlayers().forEach((online_player) -> {
-            if (ConfigManager.getBoolean("clear-chat"))
+            if (ConfigManager.getBoolean("clear-chat", false))
                 clearChat(online_player);
 
             picture_message.sendToPlayer(online_player);
@@ -77,7 +77,7 @@ public class PictureUtil {
 
     // String Utility Functions
 
-	public static String replaceThings(String m, Player player) {
+	private static String replaceThings(String m, Player player) {
 		m = ChatColor.translateAlternateColorCodes('&', m);
 		m = m.replace("%pname%", player.getName());
 		m = m.replace("%uuid%", player.getUniqueId().toString());

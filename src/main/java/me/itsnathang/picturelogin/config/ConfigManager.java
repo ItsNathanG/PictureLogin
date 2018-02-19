@@ -64,6 +64,8 @@ public class ConfigManager {
 		return config.getBoolean(key);
 	}
 
+	public static boolean getBoolean(String key, Boolean def) { return config.getBoolean(key, def); }
+
 	public static List<String> getStringList(String key) {
 		return config.getStringList(key);
 	}

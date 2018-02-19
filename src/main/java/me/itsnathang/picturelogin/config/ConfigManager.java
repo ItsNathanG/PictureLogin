@@ -11,27 +11,30 @@ import com.bobacadodl.imgmessage.ImageMessage;
 import me.itsnathang.picturelogin.PictureLogin;
 
 public class ConfigManager {
-	static YamlConfiguration config;
-	private PictureLogin plugin;
+	private static YamlConfiguration config;
+	private static PictureLogin plugin;
 	
-	public ConfigManager(PictureLogin p) {
-		plugin = p;
+	public ConfigManager(PictureLogin plugin) {
+		ConfigManager.plugin = plugin;
 
-		new LanguageManager(p);
+		new LanguageManager(plugin);
+		new FallbackPicture(plugin);
 		
 		reloadConfig();
 	}
 	
-	public void reloadConfig() {
+	public static void reloadConfig() {
 		File conf = new File(plugin.getDataFolder() + File.separator + "config.yml");
 		
 		if(!conf.exists())
 			plugin.saveResource("config.yml", true);
         
         config = YamlConfiguration.loadConfiguration(conf);
+
+        FallbackPicture.reload();
 	}
 	
-	public static char getChar() {
+	private static char getChar() {
 		String character = config.getString("character");
 		
 		if (character.equalsIgnoreCase("block"))

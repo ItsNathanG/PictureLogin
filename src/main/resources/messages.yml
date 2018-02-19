@@ -7,10 +7,11 @@
 prefix: "&aPictureLogin &7»"
 
 # Command Messages
-reload_config: "%prefix% configuration successfully reloaded."
+reload_config: "%prefix% cCnfiguration successfully reloaded."
 reload_config_help: "%prefix% &a/picturelogin reload &7to reload the configuration file."
 no_permission: "%prefix% &cYou do not have permission to do this!"
 
-# Error Messages
-error_reload_config: "%prefix% &cCould not access the configuration file."
-error_retrieving_avatar: "%prefix% &cCould not retrieve avatar from URL. Please check your config file."
+# Error Messages (Printed in console.)
+error_reload_config: "Could not access the configuration file."
+error_retrieving_avatar: "Could not retrieve avatar from URL. Reverting to fallback image."
+error_fallback_img: "Could not load fallback image."

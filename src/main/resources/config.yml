@@ -62,6 +62,7 @@ first-join-messages:
 # message whenever a player
 # leaves the server. Refer
 # to top for variables.
+
 show-leave-message: false
 
 leave-messages:
@@ -73,6 +74,17 @@ leave-messages:
     - ''
     - '&7» &aPictureLogin &7by &aNathanG&7.'
     - ''
+
+#############
+# Fallback
+########
+# If enabled, then a fallback image
+# will be used if the plugin cannot
+# load an avatar.
+# Fallback image located at:
+# > plugins/PictureLogin/fallback.png
+
+fallback: true
 
 #############
 # Clear Chat
@@ -144,4 +156,5 @@ url: 'https://crafatar.com/avatars/%uuid%.png?size=8&overlay&default=MHF_Steve'
 # Allow this plugin to send anonymous metrics
 # to bStats? https://bstats.org/
 # Set to false to disable.
+
 metrics: true

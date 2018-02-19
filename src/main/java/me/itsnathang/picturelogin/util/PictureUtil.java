@@ -10,6 +10,7 @@ import com.bobacadodl.imgmessage.ImageMessage;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.itsnathang.picturelogin.PictureLogin;
 import me.itsnathang.picturelogin.config.ConfigManager;
+import me.itsnathang.picturelogin.config.FallbackPicture;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -37,21 +38,28 @@ public class PictureUtil {
 	public static BufferedImage getImage(String player_uuid) {
 		URL head_image = newURL(player_uuid);
 
-		if (head_image == null) {
-			plugin.getLogger().warning(tl("error_retrieving_avatar"));
-			return null;
+		// URL Formatted correctly.
+		if (head_image != null) {
+            try {
+                return ImageIO.read(head_image);
+            } catch (Exception e) {
+                plugin.getLogger().warning(tl("error_retrieving_avatar"));
+            }
 		}
 
-		try {
-			return ImageIO.read(head_image);
-		} catch (Exception e) {
-			plugin.getLogger().warning(tl("error_retrieving_avatar"));
-			return null;
-		}
+		// Incorrectly formatted URL or couldn't load from URL
+        try {
+		    return ImageIO.read(FallbackPicture.get());
+        } catch (Exception e) {
+		    plugin.getLogger().warning(tl("error_fallback_img"));
+		    return null;
+        }
 	}
 
 	public static ImageMessage createPictureMessage(Player player, List<String> messages) {
 		BufferedImage image = getImage(player.getUniqueId().toString());
+
+		if (image == null) return null;
 
 		messages.replaceAll((message) -> replaceThings(message, player));
 

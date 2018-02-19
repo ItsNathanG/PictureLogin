@@ -11,6 +11,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import static me.itsnathang.picturelogin.config.Language.tl;
+
 public class PictureUtil {
 	private static PictureLogin plugin;
 	private static boolean placeholder_api_enabled;
@@ -32,7 +34,7 @@ public class PictureUtil {
 		try {
 			image = ImageIO.read(newURL(player));
 		} catch (Exception e) {
-			Bukkit.getLogger().warning("[PictureLogin] Could not retrieve avatar from URL. Please check your config file.");
+			Bukkit.getLogger().warning(tl("error_retrieving_avatar"));
 		}
 		
 		return image;

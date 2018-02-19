@@ -9,8 +9,10 @@ import org.bukkit.command.CommandSender;
 
 import me.itsnathang.picturelogin.PictureLogin;
 
+import static me.itsnathang.picturelogin.config.Language.tl;
+
 public class BaseCommand implements CommandExecutor {
-	PictureLogin plugin;
+	private PictureLogin plugin;
 
 	public BaseCommand(PictureLogin plugin) {
 	  this.plugin = plugin;
@@ -21,7 +23,7 @@ public class BaseCommand implements CommandExecutor {
 		if (cmd.getName().equalsIgnoreCase("picturelogin")) {
 			if (args.length > 0) {
 				if (!s.hasPermission("picturelogin.main")) {
-					s.sendMessage(ChatColor.RED + "[PL] You don't have permission to do this!");
+					s.sendMessage(tl("no_permission"));
 					return true;
 				}
 				
@@ -30,19 +32,18 @@ public class BaseCommand implements CommandExecutor {
 					try {
 						plugin.getConfig().load(f);
 					} catch (Exception e) {
-						s.sendMessage("Couldn't reload config. :(");
+						s.sendMessage(tl("error_reload_config"));
 						e.printStackTrace();
 						return false;
 					}
-					s.sendMessage(ChatColor.GREEN + "PictureLogin " + ChatColor.GRAY + "» Configuration reloaded!");
+					s.sendMessage(tl("reload_config"));
 					return true;
 				}
 			} else {
 			    s.sendMessage(ChatColor.GREEN + "PictureLogin " + ChatColor.GRAY + "v" +
                                  ChatColor.GREEN + plugin.getDescription().getVersion() + ChatColor.GRAY + " by " +
                                  ChatColor.GREEN + "NathanG");
-			    s.sendMessage(ChatColor.GRAY + "» " + ChatColor.GREEN + "/picturelogin reload" +
-                                 ChatColor.GRAY + " to reload the config file.");
+			    s.sendMessage(tl("reload_config_help"));
 
 				return true;
 			}

@@ -43,8 +43,14 @@ public class JoinListener implements Listener {
 				picture_message = plugin.getConfig().getStringList("messages");
 
 			// TODO: Add default picture backup.
-			if (picture == null)
-				return;
+			// Picture was not able to be loaded.
+			if (picture == null) {
+				if (!plugin.getConfig().getBoolean("enable-fallback"))
+					return;
+
+				
+			}
+
 
 			// TODO: Implement PlaceholderAPI
 			// Replace messages with our variables

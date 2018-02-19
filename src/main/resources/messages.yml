@@ -7,7 +7,7 @@
 prefix: "&aPictureLogin &7»"
 
 # Command Messages
-reload_config: "%prefix% cCnfiguration successfully reloaded."
+reload_config: "%prefix% Configuration successfully reloaded."
 reload_config_help: "%prefix% &a/picturelogin reload &7to reload the configuration file."
 no_permission: "%prefix% &cYou do not have permission to do this!"
 

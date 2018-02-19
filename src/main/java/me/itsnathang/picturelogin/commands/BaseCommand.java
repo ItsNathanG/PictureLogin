@@ -30,7 +30,6 @@ public class BaseCommand implements CommandExecutor {
 		if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
 			ConfigManager.reloadConfig();
 			s.sendMessage(tl("reload_config"));
-
 			return true;
 		}
 

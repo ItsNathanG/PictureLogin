@@ -2,12 +2,14 @@ package me.itsnathang.picturelogin.util;
 
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import com.bobacadodl.imgmessage.ImageMessage;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.itsnathang.picturelogin.PictureLogin;
-import org.bukkit.Bukkit;
+import me.itsnathang.picturelogin.config.ConfigManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -15,41 +17,57 @@ import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class PictureUtil {
 	private static PictureLogin plugin;
-	private static boolean placeholder_api_enabled;
+	private static boolean placeholder_api;
 	
-	public PictureUtil(PictureLogin p, Boolean placeholder_api) {
-		plugin = p;
-		placeholder_api_enabled = placeholder_api;
+	public PictureUtil(PictureLogin plugin) {
+		PictureUtil.plugin = plugin;
+
+		placeholder_api = plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
 	}
 	
-	private static URL newURL(Player player) throws Exception {
-		String url = plugin.getConfig().getString("url");
-		url = url.replace("%pname%", player.getName()).replace("%uuid%", player.getUniqueId().toString());
-		return new URL(url);
-	}
-	
-	public static BufferedImage getImage(Player player) {
-		BufferedImage image = null;
-		
+	private static URL newURL(String player_uuid) {
+		String url = ConfigManager.getURL()
+				.replace("%uuid%" , player_uuid);
+
 		try {
-			image = ImageIO.read(newURL(player));
-		} catch (Exception e) {
-			Bukkit.getLogger().warning(tl("error_retrieving_avatar"));
+			return new URL(url);
+		} catch (Exception e) { return null; }
+	}
+	
+	public static BufferedImage getImage(String player_uuid) {
+		URL head_image = newURL(player_uuid);
+
+		if (head_image == null) {
+			plugin.getLogger().warning(tl("error_retrieving_avatar"));
+			return null;
 		}
-		
-		return image;
+
+		try {
+			return ImageIO.read(head_image);
+		} catch (Exception e) {
+			plugin.getLogger().warning(tl("error_retrieving_avatar"));
+			return null;
+		}
+	}
+
+	public static ImageMessage createPictureMessage(Player player, List<String> messages) {
+		BufferedImage image = getImage(player.getUniqueId().toString());
+
+		messages.replaceAll((message) -> replaceThings(message, player));
+
+		return ConfigManager.getMessage(messages, image);
 	}
 	
 	public static String replaceThings(String m, Player player) {
 		m = ChatColor.translateAlternateColorCodes('&', m);
 		m = m.replace("%pname%", player.getName());
 		m = m.replace("%uuid%", player.getUniqueId().toString());
-		m = m.replace("%online%", String.valueOf(Bukkit.getOnlinePlayers().size()));
-		m = m.replace("%max%", String.valueOf(Bukkit.getMaxPlayers()));
-		m = m.replace("%motd%", Bukkit.getMotd());
+		m = m.replace("%online%", String.valueOf(plugin.getServer().getOnlinePlayers().size()));
+		m = m.replace("%max%", String.valueOf(plugin.getServer().getMaxPlayers()));
+		m = m.replace("%motd%", plugin.getServer().getMotd());
 		m = m.replace("%displayname%", player.getDisplayName());
 
-		if (placeholder_api_enabled)
+		if (placeholder_api)
 			m = PlaceholderAPI.setPlaceholders(player, m);
 
 		return m;

@@ -1,15 +1,12 @@
 package me.itsnathang.picturelogin.listeners;
 
-import java.awt.image.BufferedImage;
 import java.util.List;
 
-import org.apache.commons.lang.ObjectUtils;
-import org.bukkit.Bukkit;
+import com.bobacadodl.imgmessage.ImageMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import me.itsnathang.picturelogin.PictureLogin;
 import me.itsnathang.picturelogin.config.ConfigManager;
@@ -29,48 +26,23 @@ public class JoinListener implements Listener {
 		if(!player.hasPermission("picturelogin.show"))
 			return;
 		
-		if (plugin.getConfig().getBoolean("block-join-message"))
+		if (ConfigManager.getBoolean("block-join-message"))
 			event.setJoinMessage(null);
 
-		Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-			BufferedImage picture = PictureUtil.getImage(player);
-			List<String> picture_message;
+		List<String> messages;
 
-			// Show a different message on a first player join
-			if(!player.hasPlayedBefore() && plugin.getConfig().getBoolean("show-first-join"))
-				picture_message = plugin.getConfig().getStringList("first-join-messages");
-			else
-				picture_message = plugin.getConfig().getStringList("messages");
+		if (ConfigManager.getBoolean("show-first-join") && !player.hasPlayedBefore())
+			messages = ConfigManager.getStringList("first-join-messages");
+		else
+			messages = ConfigManager.getStringList("messages");
 
-			// TODO: Add default picture backup.
-			// Picture was not able to be loaded.
-			if (picture == null) {
-				if (!plugin.getConfig().getBoolean("enable-fallback"))
-					return;
+		ImageMessage picture_message = PictureUtil.createPictureMessage(player, messages);
 
-				
-			}
+		if (ConfigManager.getBoolean("player-only")) {
+			picture_message.sendToPlayer(player);
+			return;
+		}
 
-
-			// TODO: Implement PlaceholderAPI
-			// Replace messages with our variables
-			picture_message.replaceAll(message -> PictureUtil.replaceThings(message, player));
-
-			// Only show picture message to the player that logged in
-			if (plugin.getConfig().getBoolean("player-only")) {
-				ConfigManager.getMessage(picture_message, picture).sendToPlayer(player);
-				return;
-			}
-
-			// Send picture message to all online players
-			Bukkit.getOnlinePlayers().forEach((online_player) -> {
-				if (plugin.getConfig().getBoolean("clear-chat"))
-					for(int i=0;i<20;i++)
-						online_player.sendMessage("");
-
-				ConfigManager.getMessage(picture_message, picture).sendToPlayer(online_player);
-			});
-
-		});
+		plugin.getServer().getOnlinePlayers().forEach(picture_message :: sendToPlayer);
 	}
 }

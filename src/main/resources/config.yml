@@ -150,6 +150,16 @@ character: 'BLOCK'
 url: 'https://crafatar.com/avatars/%uuid%.png?size=8&overlay'
 
 #############
+# Require Permission
+########
+# Set to false to show the message
+# for every player that logs in,
+# regardless of whether or not
+# they have the permission picturelogin.show
+
+require-permission: true
+
+#############
 # Metrics
 ########
 # Allow this plugin to send anonymous metrics

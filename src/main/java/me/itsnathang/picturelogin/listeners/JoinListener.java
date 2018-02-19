@@ -24,7 +24,7 @@ public class JoinListener implements Listener {
 		Player player = event.getPlayer();
 
 		// only show message for players with picturelogin.show permission
-		if(!player.hasPermission("picturelogin.show"))
+		if(!player.hasPermission("picturelogin.show") && ConfigManager.getBoolean("require-permission", true))
 			return;
 
 		// block the default join message

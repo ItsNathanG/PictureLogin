@@ -18,7 +18,7 @@ public class QuitListener implements Listener {
 
 		Player player = event.getPlayer();
 		
-		if(!player.hasPermission("picturelogin.show"))
+		if(!player.hasPermission("picturelogin.show") && ConfigManager.getBoolean("require-permission", true))
 			return;
 		
 		if (ConfigManager.getBoolean("block-leave-message", true))

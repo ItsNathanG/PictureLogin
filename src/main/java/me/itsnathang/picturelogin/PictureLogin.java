@@ -6,6 +6,7 @@ import me.itsnathang.picturelogin.commands.BaseCommand;
 import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.util.PictureUtil;
 
+import me.itsnathang.picturelogin.util.Updater;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bstats.bukkit.MetricsLite;
@@ -29,6 +30,9 @@ public class PictureLogin extends JavaPlugin implements CommandExecutor {
 
 		// Initialize Picture Utility
 		new PictureUtil(this);
+
+		// Update Checker
+		new Updater(this.getLogger(), this.getDescription().getVersion());
 
 		// bStats integration
 		if (ConfigManager.getBoolean("metrics", true))

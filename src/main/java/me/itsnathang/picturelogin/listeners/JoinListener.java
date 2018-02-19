@@ -41,13 +41,25 @@ public class JoinListener implements Listener {
 
 		ImageMessage picture_message = PictureUtil.createPictureMessage(player, messages);
 
+		if (picture_message == null) return;
+
 		// send only to the player that joined?
 		if (ConfigManager.getBoolean("player-only")) {
 			picture_message.sendToPlayer(player);
 			return;
 		}
 
-		// send message to everyone on the server
-		plugin.getServer().getOnlinePlayers().forEach(picture_message :: sendToPlayer);
+		plugin.getServer().getOnlinePlayers().forEach((online_player) -> {
+			if (ConfigManager.getBoolean("clear-chat"))
+				clearChat(online_player);
+
+			picture_message.sendToPlayer(online_player);
+		});
+	}
+
+	private static void clearChat(Player player) {
+		for (int i = 0; i < 20; i++) {
+			player.sendMessage("");
+		}
 	}
 }

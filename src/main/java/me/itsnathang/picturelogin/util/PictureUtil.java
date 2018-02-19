@@ -65,7 +65,18 @@ public class PictureUtil {
 
 		return ConfigManager.getMessage(messages, image);
 	}
-	
+
+	public static void sendOutPictureMessage(ImageMessage picture_message) {
+        plugin.getServer().getOnlinePlayers().forEach((online_player) -> {
+            if (ConfigManager.getBoolean("clear-chat"))
+                clearChat(online_player);
+
+            picture_message.sendToPlayer(online_player);
+        });
+    }
+
+    // String Utility Functions
+
 	public static String replaceThings(String m, Player player) {
 		m = ChatColor.translateAlternateColorCodes('&', m);
 		m = m.replace("%pname%", player.getName());
@@ -80,5 +91,11 @@ public class PictureUtil {
 
 		return m;
 	}
+
+    private static void clearChat(Player player) {
+        for (int i = 0; i < 20; i++) {
+            player.sendMessage("");
+        }
+    }
 	
 }

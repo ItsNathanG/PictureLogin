@@ -11,7 +11,12 @@ reload_config: "%prefix% Configuration successfully reloaded."
 reload_config_help: "%prefix% &a/picturelogin reload &7to reload the configuration file."
 no_permission: "%prefix% &cYou do not have permission to do this!"
 
+# Misc
+update_available: "&aNew update available! &7Current Version: %curren% New Version: &a%new%"
+update_available_download: "Download at https://www.spigotmc.org/resources/picture-login.4514/"
+
 # Error Messages (Printed in console.)
 error_reload_config: "Could not access the configuration file."
 error_retrieving_avatar: "Could not retrieve avatar from URL. Reverting to fallback image."
 error_fallback_img: "Could not load fallback image."
+error_update_check: "Could not check for update."

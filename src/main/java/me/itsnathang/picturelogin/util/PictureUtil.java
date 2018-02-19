@@ -26,17 +26,18 @@ public class PictureUtil {
 		placeholder_api = plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
 	}
 	
-	private static URL newURL(String player_uuid) {
+	private static URL newURL(String player_uuid, String player_name) {
 		String url = ConfigManager.getURL()
-				.replace("%uuid%" , player_uuid);
+				.replace("%uuid%" , player_uuid)
+				.replace("%pname%", player_name);
 
 		try {
 			return new URL(url);
 		} catch (Exception e) { return null; }
 	}
 	
-	private static BufferedImage getImage(String player_uuid) {
-		URL head_image = newURL(player_uuid);
+	private static BufferedImage getImage(Player player) {
+		URL head_image = newURL(player.getUniqueId().toString(), player.getName());
 
 		// URL Formatted correctly.
 		if (head_image != null) {
@@ -57,7 +58,7 @@ public class PictureUtil {
 	}
 
 	public static ImageMessage createPictureMessage(Player player, List<String> messages) {
-		BufferedImage image = getImage(player.getUniqueId().toString());
+		BufferedImage image = getImage(player);
 
 		if (image == null) return null;
 

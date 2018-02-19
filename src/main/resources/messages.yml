@@ -1,0 +1,16 @@
+#####
+# PictureLogin 
+# Default Messages
+
+# Prefix can be used with %prefix%
+# New Line inserted with %new_line%
+prefix: "&aPictureLogin &7»"
+
+# Command Messages
+reload_config: "%prefix% configuration successfully reloaded."
+reload_config_help: "%prefix% &a/picturelogin reload &7to reload the configuration file."
+no_permission: "%prefix% &cYou do not have permission to do this!"
+
+# Error Messages
+error_reload_config: "%prefix% &cCould not access the configuration file."
+error_retrieving_avatar: "%prefix% &cCould not retrieve avatar from URL. Please check your config file."

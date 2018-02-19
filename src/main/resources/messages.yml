@@ -12,7 +12,7 @@ reload_config_help: "%prefix% &a/picturelogin reload &7to reload the configurati
 no_permission: "%prefix% &cYou do not have permission to do this!"
 
 # Misc
-update_available: "&aNew update available! &7Current Version: %curren% New Version: &a%new%"
+update_available: "New update available! Current Version: %current% New Version: %new%"
 update_available_download: "Download at https://www.spigotmc.org/resources/picture-login.4514/"
 
 # Error Messages (Printed in console.)

@@ -22,15 +22,18 @@ public class JoinListener implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		Player player = event.getPlayer();
-		
+
+		// only show message for players with picturelogin.show permission
 		if(!player.hasPermission("picturelogin.show"))
 			return;
-		
+
+		// block the default join message
 		if (ConfigManager.getBoolean("block-join-message"))
 			event.setJoinMessage(null);
 
 		List<String> messages;
 
+		// if it's a player's first time and feature is enabled, show different message
 		if (ConfigManager.getBoolean("show-first-join") && !player.hasPlayedBefore())
 			messages = ConfigManager.getStringList("first-join-messages");
 		else
@@ -38,11 +41,13 @@ public class JoinListener implements Listener {
 
 		ImageMessage picture_message = PictureUtil.createPictureMessage(player, messages);
 
+		// send only to the player that joined?
 		if (ConfigManager.getBoolean("player-only")) {
 			picture_message.sendToPlayer(player);
 			return;
 		}
 
+		// send message to everyone on the server
 		plugin.getServer().getOnlinePlayers().forEach(picture_message :: sendToPlayer);
 	}
 }

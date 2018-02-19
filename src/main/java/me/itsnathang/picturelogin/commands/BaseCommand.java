@@ -1,7 +1,6 @@
 package me.itsnathang.picturelogin.commands;
 
-import java.io.File;
-
+import me.itsnathang.picturelogin.config.ConfigManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,40 +13,33 @@ import static me.itsnathang.picturelogin.util.Translate.tl;
 public class BaseCommand implements CommandExecutor {
 	private PictureLogin plugin;
 
+	// TODO: Remove plugin
 	public BaseCommand(PictureLogin plugin) {
 	  this.plugin = plugin;
 	}
 	  
-	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String label, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("picturelogin")) {
-			if (args.length > 0) {
-				if (!s.hasPermission("picturelogin.main")) {
-					s.sendMessage(tl("no_permission"));
-					return true;
-				}
-				
-				if (args[0].equalsIgnoreCase("reload")) {
-					File f = new File(plugin.getDataFolder() + File.separator + "config.yml");
-					try {
-						plugin.getConfig().load(f);
-					} catch (Exception e) {
-						s.sendMessage(tl("error_reload_config"));
-						e.printStackTrace();
-						return false;
-					}
-					s.sendMessage(tl("reload_config"));
-					return true;
-				}
-			} else {
-			    s.sendMessage(ChatColor.GREEN + "PictureLogin " + ChatColor.GRAY + "v" +
-                                 ChatColor.GREEN + plugin.getDescription().getVersion() + ChatColor.GRAY + " by " +
-                                 ChatColor.GREEN + "NathanG");
-			    s.sendMessage(tl("reload_config_help"));
-
-				return true;
-			}
+		// Permission Check
+		if (!s.hasPermission("picturelogin.main")) {
+			s.sendMessage(tl("no_permission"));
+			return true;
 		}
-		return false;
+
+		// Check if command is /picturelogin reload
+		if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+			ConfigManager.reloadConfig();
+			s.sendMessage(tl("reload_config"));
+
+			return true;
+		}
+
+		// Default to sending help
+		s.sendMessage(ChatColor.GREEN + "PictureLogin " + ChatColor.GRAY + "v" +
+				ChatColor.GREEN + plugin.getDescription().getVersion() + ChatColor.GRAY + " by " +
+				ChatColor.GREEN + "NathanG");
+		s.sendMessage(tl("reload_config_help"));
+
+		return true;
 	}
 }

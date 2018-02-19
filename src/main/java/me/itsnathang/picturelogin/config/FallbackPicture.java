@@ -20,7 +20,10 @@ public class FallbackPicture {
         if (!image.exists())
             plugin.saveResource("fallback.png", false);
 
-        fallback_image = new File(plugin.getDataFolder() + File.separator + "fallback.png");
+        if (ConfigManager.getBoolean("fallback", true))
+            fallback_image = new File(plugin.getDataFolder() + File.separator + "fallback.png");
+        else
+            fallback_image = null;
     }
 
     public static File get() {

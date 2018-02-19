@@ -6,11 +6,11 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 
-public class Language {
+public class LanguageManager {
     private static YamlConfiguration messages;
     private static PictureLogin plugin;
 
-    public Language(PictureLogin pl) {
+    public LanguageManager(PictureLogin pl) {
         plugin = pl;
 
         messages = loadLanguage();
@@ -27,7 +27,7 @@ public class Language {
 
     public static void reloadLanguage() { messages = loadLanguage(); }
 
-    public static String tl(String key) {
+    public static String getFilteredTranslation(String key) {
         return color(messages.getString(key)
                 .replace("%prefix%", messages.getString("prefix"))
                 .replace("%new_line%", "\n"));

@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 
 import me.itsnathang.picturelogin.PictureLogin;
 
-import static me.itsnathang.picturelogin.config.Language.tl;
+import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class BaseCommand implements CommandExecutor {
 	private PictureLogin plugin;

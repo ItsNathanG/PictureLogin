@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import static me.itsnathang.picturelogin.config.Language.tl;
+import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class PictureUtil {
 	private static PictureLogin plugin;

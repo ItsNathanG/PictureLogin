@@ -32,7 +32,7 @@ public class QuitListener implements Listener {
 			event.setQuitMessage(null);
 
 		Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
-			BufferedImage picture = PictureUtil.getImage(player);
+			BufferedImage picture = PictureUtil.getImage(player.getUniqueId().toString());
 			List<String> picture_message;
 
 			picture_message = plugin.getConfig().getStringList("leave-messages");

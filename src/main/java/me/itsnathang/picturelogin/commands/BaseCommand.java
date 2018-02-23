@@ -22,7 +22,7 @@ public class BaseCommand implements CommandExecutor {
 		// Permission Check
 		if (!s.hasPermission("picturelogin.main")) {
 			s.sendMessage(tl("no_permission"));
-			return true;
+			return false;
 		}
 
 		// Check if command is /picturelogin reload

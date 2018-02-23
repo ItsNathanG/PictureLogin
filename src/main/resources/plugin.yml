@@ -5,7 +5,7 @@ author: NathanG
 description: Display a cool login message with a picture of the player's skin.
 
 version: ${version}
-softdepend: [PlaceholderAPI]
+softdepend: [AuthMe, PlaceholderAPI]
 
 commands:
   picturelogin:

@@ -1,35 +1,50 @@
 package me.itsnathang.picturelogin.listeners;
 
 import com.bobacadodl.imgmessage.ImageMessage;
+import fr.xephi.authme.api.v3.AuthMeApi;
+import me.itsnathang.picturelogin.util.Hooks;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import me.itsnathang.picturelogin.PictureLogin;
 import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.util.PictureUtil;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class JoinListener implements Listener {
+	private PictureLogin plugin;
 	private PictureUtil pictureUtil;
 	private ConfigManager config;
 	private Player player;
 
 	public JoinListener(PictureLogin plugin) {
+		this.plugin = plugin;
 		this.config = plugin.getConfigManager();
 		this.pictureUtil = plugin.getPictureUtil();
 	}
-	
-	@EventHandler
-	public void onJoin(PlayerJoinEvent event) {
-		this.player = event.getPlayer();
 
-		// only show message for players with picturelogin.show permission
-		if(!checkPermission()) return;
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onJoin(PlayerJoinEvent event) {
+		player = event.getPlayer();
 
 		// block the default join message
 		if (config.getBoolean("block-join-message", false))
 			event.setJoinMessage(null);
+
+		if (Hooks.AUTHME) {
+			authMeLogin();
+			return;
+		}
+
+		sendImage();
+	}
+
+	private void sendImage() {
+		// only show message for players with picturelogin.show permission
+		if(!checkPermission()) return;
 
 		ImageMessage pictureMessage = getMessage();
 
@@ -59,5 +74,23 @@ public class JoinListener implements Listener {
 			msgType = "messages";
 
 		return pictureUtil.createPictureMessage(player, config.getStringList(msgType));
+	}
+
+	private void authMeLogin() {
+		new BukkitRunnable() {
+
+			@Override
+			public void run() {
+				// Stop if player doesn't exist anymore
+				if (player == null)
+					this.cancel();
+				// Check for authentication
+				if (AuthMeApi.getInstance().isAuthenticated(player)) {
+					sendImage();
+					this.cancel();
+				}
+			}
+
+		}.runTaskTimer(plugin, 0L, 20L);
 	}
 }

@@ -4,6 +4,7 @@ import me.itsnathang.picturelogin.listeners.JoinListener;
 import me.itsnathang.picturelogin.listeners.QuitListener;
 import me.itsnathang.picturelogin.commands.BaseCommand;
 import me.itsnathang.picturelogin.config.ConfigManager;
+import me.itsnathang.picturelogin.util.Hooks;
 import me.itsnathang.picturelogin.util.PictureUtil;
 
 import me.itsnathang.picturelogin.util.Updater;
@@ -19,6 +20,9 @@ public class PictureLogin extends JavaPlugin {
 	public void onEnable() {
 		// load config & languages file
 		configManager = new ConfigManager(this);
+
+		// Register Plugin Hooks
+		new Hooks(getServer().getPluginManager(), getLogger());
 
 		// Initialize Picture Utility
 		pictureUtil = new PictureUtil(this);

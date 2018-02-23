@@ -24,12 +24,12 @@ public class Hooks {
     }
 
     private static void hookAuthMe() {
-        AUTHME = plugins.isPluginEnabled("AuthMe");
-        hookPlugin("AuthMe");
+        if (AUTHME = plugins.isPluginEnabled("AuthMe"))
+            hookPlugin("AuthMe");
     }
 
     private static void hookPlaceHolderAPI() {
-        PLACEHOLDER_API = plugins.isPluginEnabled("PlaceholderAPI");
-        hookPlugin("PlaceholderAPI");
+        if (PLACEHOLDER_API = plugins.isPluginEnabled("PlaceholderAPI"))
+            hookPlugin("PlaceholderAPI");
     }
 }

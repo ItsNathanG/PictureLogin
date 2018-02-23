@@ -35,22 +35,11 @@ public class ConfigManager {
 	}
 	
 	private static char getChar() {
-		String character = config.getString("character");
-		
-		if (character.equalsIgnoreCase("block"))
-			return(ImageChar.BLOCK.getChar());
-		
-		else if (character.equalsIgnoreCase("dark_shade"))
-			return(ImageChar.DARK_SHADE.getChar());
-		
-		else if (character.equalsIgnoreCase("medium_shade"))
-			return(ImageChar.MEDIUM_SHADE.getChar());
-		
-		else if (character.equalsIgnoreCase("light_shade"))
-			return(ImageChar.LIGHT_SHADE.getChar());
-		
-		else
-			return(ImageChar.BLOCK.getChar());
+		try {
+			return ImageChar.valueOf(config.getString("character").toUpperCase()).getChar();
+		} catch (IllegalArgumentException e) {
+			return ImageChar.BLOCK.getChar();
+		}
 	}
 	
 	public static ImageMessage getMessage(List<String> messages, BufferedImage image) {

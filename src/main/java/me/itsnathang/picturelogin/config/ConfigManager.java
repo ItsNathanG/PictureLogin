@@ -2,6 +2,7 @@ package me.itsnathang.picturelogin.config;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -43,10 +44,13 @@ public class ConfigManager {
 	}
 	
 	public static ImageMessage getMessage(List<String> messages, BufferedImage image) {
-		if (config.getBoolean("center-text"))
-			return new ImageMessage(image, 8, getChar()).appendCenteredText(messages.get(0),messages.get(1),messages.get(2),messages.get(3),messages.get(4),messages.get(5),messages.get(6),messages.get(7));
-		else
-			return new ImageMessage(image, 8, getChar()).appendText(messages.get(0),messages.get(1),messages.get(2),messages.get(3),messages.get(4),messages.get(5),messages.get(6),messages.get(7));
+		ImageMessage imageMessage = new ImageMessage(image, 8, getChar());
+		String[] msg = new String[messages.size()];
+
+		if (config.getBoolean("center-text", false))
+			return imageMessage.appendCenteredText(messages.toArray(msg));
+
+		return imageMessage.appendText(messages.toArray(msg));
 	}
 
 	public static boolean getBoolean(String key) {

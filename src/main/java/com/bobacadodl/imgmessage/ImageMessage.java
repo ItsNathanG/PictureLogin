@@ -76,7 +76,7 @@ public class ImageMessage {
         double ratio = (double) image.getHeight() / image.getWidth();
         int width = (int) (height / ratio);
         if (width > 10) width = 10;
-        BufferedImage resized = resizeImage(image, (int) (height / ratio), height);
+        BufferedImage resized = resizeImage(image, width, height);
 
         ChatColor[][] chatImg = new ChatColor[resized.getWidth()][resized.getHeight()];
         for (int x = 0; x < resized.getWidth(); x++) {
@@ -90,7 +90,7 @@ public class ImageMessage {
     }
 
     private String[] toImgMessage(ChatColor[][] colors, char imgchar) {
-        String[] lines = new String[colors[0].length];
+        lines = new String[colors[0].length];
         for (int y = 0; y < colors[0].length; y++) {
             String line = "";
             for (int x = 0; x < colors.length; x++) {

@@ -13,13 +13,13 @@ import me.itsnathang.picturelogin.PictureLogin;
 
 public class ConfigManager {
 	private final PictureLogin plugin;
+	private LanguageManager languageManager;
 	private YamlConfiguration config;
 	
 	public ConfigManager(PictureLogin plugin) {
 		this.plugin = plugin;
 
-		new LanguageManager(plugin);
-		new FallbackPicture(plugin);
+		languageManager = new LanguageManager(plugin);
 		
 		reloadConfig();
 	}
@@ -32,6 +32,7 @@ public class ConfigManager {
         
         config = YamlConfiguration.loadConfiguration(conf);
 
+		languageManager.reloadLanguage();
 	}
 	
 	private char getChar() {

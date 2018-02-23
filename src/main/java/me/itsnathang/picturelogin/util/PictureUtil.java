@@ -19,13 +19,14 @@ import static me.itsnathang.picturelogin.util.Translate.tl;
 public class PictureUtil {
 	private final PictureLogin plugin;
 	private ConfigManager config;
-	private static boolean placeholder_api;
+
+	private final boolean PLACEHOLDER_API;
 	
 	public PictureUtil(PictureLogin plugin) {
 		this.plugin = plugin;
 		this.config = plugin.getConfigManager();
 
-		placeholder_api = plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
+		PLACEHOLDER_API = plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
 	}
 	
 	private URL newURL(String player_uuid, String player_name) {
@@ -89,7 +90,7 @@ public class PictureUtil {
 		m = m.replace("%motd%", plugin.getServer().getMotd());
 		m = m.replace("%displayname%", player.getDisplayName());
 
-		if (placeholder_api)
+		if (PLACEHOLDER_API)
 			m = PlaceholderAPI.setPlaceholders(player, m);
 
 		return m;

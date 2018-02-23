@@ -11,7 +11,7 @@ import me.itsnathang.picturelogin.PictureLogin;
 import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class BaseCommand implements CommandExecutor {
-	private PictureLogin plugin;
+	private final PictureLogin plugin;
 
 	// TODO: Remove plugin
 	public BaseCommand(PictureLogin plugin) {

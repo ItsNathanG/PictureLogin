@@ -13,24 +13,43 @@ import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.util.PictureUtil;
 
 public class JoinListener implements Listener {
-	private static PictureLogin plugin;
+	private final PictureLogin plugin;
+	private Player player;
 
 	public JoinListener(PictureLogin plugin) {
-	  JoinListener.plugin = plugin;
+	  this.plugin = plugin;
 	}
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
-		Player player = event.getPlayer();
+		this.player = event.getPlayer();
 
 		// only show message for players with picturelogin.show permission
-		if(!player.hasPermission("picturelogin.show") && ConfigManager.getBoolean("require-permission", true))
-			return;
+		if(!checkPermission()) return;
 
 		// block the default join message
 		if (ConfigManager.getBoolean("block-join-message", false))
 			event.setJoinMessage(null);
 
+		ImageMessage pictureMessage = getMessage();
+
+		if (pictureMessage == null) return;
+
+		// send only to the player that joined?
+		if (ConfigManager.getBoolean("player-only", true)) {
+			pictureMessage.sendToPlayer(player);
+			return;
+		}
+
+		PictureUtil.sendOutPictureMessage(pictureMessage);
+	}
+
+	private boolean checkPermission() {
+		return (!ConfigManager.getBoolean("require-permission", true) ||
+				player.hasPermission("picturelogin.show"));
+	}
+
+	private ImageMessage getMessage() {
 		List<String> messages;
 
 		// if it's a player's first time and feature is enabled, show different message
@@ -39,18 +58,6 @@ public class JoinListener implements Listener {
 		else
 			messages = ConfigManager.getStringList("messages");
 
-		ImageMessage picture_message = PictureUtil.createPictureMessage(player, messages);
-
-		if (picture_message == null) return;
-
-		// send only to the player that joined?
-		if (ConfigManager.getBoolean("player-only", true)) {
-			picture_message.sendToPlayer(player);
-			return;
-		}
-
-		PictureUtil.sendOutPictureMessage(picture_message);
+		return PictureUtil.createPictureMessage(player, messages);
 	}
-
-
 }

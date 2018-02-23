@@ -11,12 +11,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bstats.bukkit.MetricsLite;
 
-public class PictureLogin extends JavaPlugin implements CommandExecutor {
+public class PictureLogin extends JavaPlugin {
+	private ConfigManager configManager;
 
 	@Override
 	public void onEnable() {
 		// load config & languages file
-		new ConfigManager(this);
+		configManager = new ConfigManager(this);
 
 		// register Listeners
 		this.getServer().getPluginManager().registerEvents(new JoinListener(this), this);
@@ -38,5 +39,8 @@ public class PictureLogin extends JavaPlugin implements CommandExecutor {
 		if (ConfigManager.getBoolean("metrics", true))
 			new MetricsLite(this);
 	}
-	
+
+	public ConfigManager getConfigManager() {
+		return configManager;
+	}
 }

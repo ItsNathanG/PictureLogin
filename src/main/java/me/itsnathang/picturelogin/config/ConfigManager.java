@@ -12,11 +12,11 @@ import com.bobacadodl.imgmessage.ImageMessage;
 import me.itsnathang.picturelogin.PictureLogin;
 
 public class ConfigManager {
-	private static YamlConfiguration config;
-	private static PictureLogin plugin;
+	private final PictureLogin plugin;
+	private YamlConfiguration config;
 	
 	public ConfigManager(PictureLogin plugin) {
-		ConfigManager.plugin = plugin;
+		this.plugin = plugin;
 
 		new LanguageManager(plugin);
 		new FallbackPicture(plugin);
@@ -24,7 +24,7 @@ public class ConfigManager {
 		reloadConfig();
 	}
 	
-	public static void reloadConfig() {
+	public void reloadConfig() {
 		File conf = new File(plugin.getDataFolder() + File.separator + "config.yml");
 		
 		if(!conf.exists())
@@ -32,10 +32,9 @@ public class ConfigManager {
         
         config = YamlConfiguration.loadConfiguration(conf);
 
-        FallbackPicture.reload();
 	}
 	
-	private static char getChar() {
+	private char getChar() {
 		try {
 			return ImageChar.valueOf(config.getString("character").toUpperCase()).getChar();
 		} catch (IllegalArgumentException e) {
@@ -43,7 +42,7 @@ public class ConfigManager {
 		}
 	}
 	
-	public static ImageMessage getMessage(List<String> messages, BufferedImage image) {
+	public ImageMessage getMessage(List<String> messages, BufferedImage image) {
 		ImageMessage imageMessage = new ImageMessage(image, 8, getChar());
 		String[] msg = new String[messages.size()];
 
@@ -53,16 +52,16 @@ public class ConfigManager {
 		return imageMessage.appendText(messages.toArray(msg));
 	}
 
-	public static boolean getBoolean(String key) {
+	public boolean getBoolean(String key) {
 		return config.getBoolean(key);
 	}
 
-	public static boolean getBoolean(String key, Boolean def) { return config.getBoolean(key, def); }
+	public boolean getBoolean(String key, Boolean def) { return config.getBoolean(key, def); }
 
-	public static List<String> getStringList(String key) {
+	public List<String> getStringList(String key) {
 		return config.getStringList(key);
 	}
 
-	public static String getURL() { return config.getString("url"); }
+	public String getURL() { return config.getString("url"); }
 	
 }

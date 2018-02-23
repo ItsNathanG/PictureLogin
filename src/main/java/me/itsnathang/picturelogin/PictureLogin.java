@@ -13,34 +13,39 @@ import org.bstats.bukkit.MetricsLite;
 
 public class PictureLogin extends JavaPlugin {
 	private ConfigManager configManager;
+	private PictureUtil pictureUtil;
 
 	@Override
 	public void onEnable() {
 		// load config & languages file
 		configManager = new ConfigManager(this);
 
+		// Initialize Picture Utility
+		pictureUtil = new PictureUtil(this);
+
 		// register Listeners
-		this.getServer().getPluginManager().registerEvents(new JoinListener(this), this);
+		getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 
 		// (only register leave listener if enabled in config)
-		if (ConfigManager.getBoolean("show-leave-message", false))
-			this.getServer().getPluginManager().registerEvents(new QuitListener(), this);
+		if (configManager.getBoolean("show-leave-message", false))
+			getServer().getPluginManager().registerEvents(new QuitListener(this), this);
 
 		// register /picturelogin command
 		getCommand("picturelogin").setExecutor(new BaseCommand(this));
 
-		// Initialize Picture Utility
-		new PictureUtil(this);
-
 		// Update Checker
-		new Updater(this.getLogger(), this.getDescription().getVersion());
+		new Updater(getLogger(), getDescription().getVersion());
 
 		// bStats integration
-		if (ConfigManager.getBoolean("metrics", true))
+		if (configManager.getBoolean("metrics", true))
 			new MetricsLite(this);
 	}
 
 	public ConfigManager getConfigManager() {
 		return configManager;
+	}
+
+	public PictureUtil getPictureUtil() {
+		return pictureUtil;
 	}
 }

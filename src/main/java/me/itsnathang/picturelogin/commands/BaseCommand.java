@@ -1,6 +1,5 @@
 package me.itsnathang.picturelogin.commands;
 
-import me.itsnathang.picturelogin.config.ConfigManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,7 +27,7 @@ public class BaseCommand implements CommandExecutor {
 
 		// Check if command is /picturelogin reload
 		if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
-			ConfigManager.reloadConfig();
+			plugin.getConfigManager().reloadConfig();
 			s.sendMessage(tl("reload_config"));
 			return true;
 		}

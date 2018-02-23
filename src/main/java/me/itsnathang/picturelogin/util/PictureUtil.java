@@ -17,17 +17,19 @@ import org.bukkit.entity.Player;
 import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class PictureUtil {
-	private static PictureLogin plugin;
+	private final PictureLogin plugin;
+	private ConfigManager config;
 	private static boolean placeholder_api;
 	
 	public PictureUtil(PictureLogin plugin) {
-		PictureUtil.plugin = plugin;
+		this.plugin = plugin;
+		this.config = plugin.getConfigManager();
 
 		placeholder_api = plugin.getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
 	}
 	
-	private static URL newURL(String player_uuid, String player_name) {
-		String url = ConfigManager.getURL()
+	private URL newURL(String player_uuid, String player_name) {
+		String url = config.getURL()
 				.replace("%uuid%" , player_uuid)
 				.replace("%pname%", player_name);
 
@@ -36,7 +38,7 @@ public class PictureUtil {
 		} catch (Exception e) { return null; }
 	}
 	
-	private static BufferedImage getImage(Player player) {
+	private BufferedImage getImage(Player player) {
 		URL head_image = newURL(player.getUniqueId().toString(), player.getName());
 
 		// URL Formatted correctly.
@@ -50,26 +52,26 @@ public class PictureUtil {
 
 		// Incorrectly formatted URL or couldn't load from URL
         try {
-		    return ImageIO.read(FallbackPicture.get());
+		    return ImageIO.read(new FallbackPicture(plugin).get());
         } catch (Exception e) {
 		    plugin.getLogger().warning(tl("error_fallback_img"));
 		    return null;
         }
 	}
 
-	public static ImageMessage createPictureMessage(Player player, List<String> messages) {
+	public ImageMessage createPictureMessage(Player player, List<String> messages) {
 		BufferedImage image = getImage(player);
 
 		if (image == null) return null;
 
 		messages.replaceAll((message) -> replaceThings(message, player));
 
-		return ConfigManager.getMessage(messages, image);
+		return config.getMessage(messages, image);
 	}
 
-	public static void sendOutPictureMessage(ImageMessage picture_message) {
+	public void sendOutPictureMessage(ImageMessage picture_message) {
         plugin.getServer().getOnlinePlayers().forEach((online_player) -> {
-            if (ConfigManager.getBoolean("clear-chat", false))
+            if (config.getBoolean("clear-chat", false))
                 clearChat(online_player);
 
             picture_message.sendToPlayer(online_player);
@@ -78,7 +80,7 @@ public class PictureUtil {
 
     // String Utility Functions
 
-	private static String replaceThings(String m, Player player) {
+	private String replaceThings(String m, Player player) {
 		m = ChatColor.translateAlternateColorCodes('&', m);
 		m = m.replace("%pname%", player.getName());
 		m = m.replace("%uuid%", player.getUniqueId().toString());
@@ -93,7 +95,7 @@ public class PictureUtil {
 		return m;
 	}
 
-    private static void clearChat(Player player) {
+    private void clearChat(Player player) {
         for (int i = 0; i < 20; i++) {
             player.sendMessage("");
         }

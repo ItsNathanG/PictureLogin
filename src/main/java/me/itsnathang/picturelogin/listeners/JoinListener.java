@@ -1,7 +1,5 @@
 package me.itsnathang.picturelogin.listeners;
 
-import java.util.List;
-
 import com.bobacadodl.imgmessage.ImageMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -13,11 +11,13 @@ import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.util.PictureUtil;
 
 public class JoinListener implements Listener {
-	private final PictureLogin plugin;
+	private PictureUtil pictureUtil;
+	private ConfigManager config;
 	private Player player;
 
 	public JoinListener(PictureLogin plugin) {
-	  this.plugin = plugin;
+		this.config = plugin.getConfigManager();
+		this.pictureUtil = plugin.getPictureUtil();
 	}
 	
 	@EventHandler
@@ -28,7 +28,7 @@ public class JoinListener implements Listener {
 		if(!checkPermission()) return;
 
 		// block the default join message
-		if (ConfigManager.getBoolean("block-join-message", false))
+		if (config.getBoolean("block-join-message", false))
 			event.setJoinMessage(null);
 
 		ImageMessage pictureMessage = getMessage();
@@ -36,28 +36,28 @@ public class JoinListener implements Listener {
 		if (pictureMessage == null) return;
 
 		// send only to the player that joined?
-		if (ConfigManager.getBoolean("player-only", true)) {
+		if (config.getBoolean("player-only", true)) {
 			pictureMessage.sendToPlayer(player);
 			return;
 		}
 
-		PictureUtil.sendOutPictureMessage(pictureMessage);
+		pictureUtil.sendOutPictureMessage(pictureMessage);
 	}
 
 	private boolean checkPermission() {
-		return (!ConfigManager.getBoolean("require-permission", true) ||
+		return (!config.getBoolean("require-permission", true) ||
 				player.hasPermission("picturelogin.show"));
 	}
 
 	private ImageMessage getMessage() {
-		List<String> messages;
+		String msgType;
 
 		// if it's a player's first time and feature is enabled, show different message
-		if (ConfigManager.getBoolean("show-first-join", true) && !player.hasPlayedBefore())
-			messages = ConfigManager.getStringList("first-join-messages");
+		if (config.getBoolean("show-first-join", true) && !player.hasPlayedBefore())
+			msgType = "first-join-messages";
 		else
-			messages = ConfigManager.getStringList("messages");
+			msgType = "messages";
 
-		return PictureUtil.createPictureMessage(player, messages);
+		return pictureUtil.createPictureMessage(player, config.getStringList(msgType));
 	}
 }

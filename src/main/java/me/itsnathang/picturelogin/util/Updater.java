@@ -11,11 +11,10 @@ import java.util.logging.Logger;
 import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class Updater {
-    private static final String USER_AGENT = "PictureLogin Plugin";
-    private static final String PLUGIN_ID = "4514";
 
-    public
-    Updater(Logger log, String current_version) {
+     public Updater(Logger log, String current_version) {
+        final String USER_AGENT = "PictureLogin Plugin";
+        final String PLUGIN_ID = "4514";
 
         try {
             // Connect to SpiGet

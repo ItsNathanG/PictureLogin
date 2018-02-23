@@ -12,13 +12,15 @@ public class FallbackPicture {
     }
 
     public File get() {
-        File image = new File(plugin.getDataFolder() + File.separator + "fallback.png");
+        final String FALLBACK_PATH = plugin.getDataFolder() + File.separator + "fallback.png";
+
+        File image = new File(FALLBACK_PATH);
 
         if (!image.exists())
             plugin.saveResource("fallback.png", false);
 
         if (plugin.getConfigManager().getBoolean("fallback", true))
-            image = new File(plugin.getDataFolder() + File.separator + "fallback.png");
+            image = new File(FALLBACK_PATH);
         else
             image = null;
 

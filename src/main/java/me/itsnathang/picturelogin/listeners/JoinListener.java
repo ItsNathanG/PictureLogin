@@ -26,9 +26,8 @@ public class JoinListener implements Listener {
 		this.pictureUtil = plugin.getPictureUtil();
 	}
 
-	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onJoin(PlayerJoinEvent event) {
-		player = event.getPlayer();
+		this.player = event.getPlayer();
 
 		// block the default join message
 		if (config.getBoolean("block-join-message", false))
@@ -82,10 +81,13 @@ public class JoinListener implements Listener {
 			@Override
 			public void run() {
 				// Stop if player doesn't exist anymore
-				if (player == null)
+				if (player == null) {
+					plugin.getLogger().info("Could not access player.");
 					this.cancel();
+				}
 				// Check for authentication
 				if (AuthMeApi.getInstance().isAuthenticated(player)) {
+					plugin.getLogger().info("Sending picture message for " + player.getName());
 					sendImage();
 					this.cancel();
 				}

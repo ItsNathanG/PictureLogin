@@ -19,17 +19,19 @@ public class Hooks {
         hookPlaceHolderAPI();
     }
 
-    private static void hookPlugin(String plugin) {
-        logger.info("Hooked into " + plugin + ".");
+    private static boolean hookPlugin(String plugin) {
+        if (!plugins.isPluginEnabled(plugin))
+            return false;
+
+        logger.info(() -> "Hooked into: " + plugin);
+        return true;
     }
 
     private static void hookAuthMe() {
-        if (AUTHME = plugins.isPluginEnabled("AuthMe"))
-            hookPlugin("AuthMe");
+        AUTHME = hookPlugin("AuthMe");
     }
 
     private static void hookPlaceHolderAPI() {
-        if (PLACEHOLDER_API = plugins.isPluginEnabled("PlaceholderAPI"))
-            hookPlugin("PlaceholderAPI");
+        PLACEHOLDER_API = hookPlugin("PlaceholderAPI");
     }
 }

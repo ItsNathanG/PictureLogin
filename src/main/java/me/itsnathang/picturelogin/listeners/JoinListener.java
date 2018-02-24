@@ -26,6 +26,7 @@ public class JoinListener implements Listener {
 		this.pictureUtil = plugin.getPictureUtil();
 	}
 
+	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		this.player = event.getPlayer();
 
@@ -59,8 +60,10 @@ public class JoinListener implements Listener {
 	}
 
 	private boolean checkPermission() {
-		return (!config.getBoolean("require-permission", true) ||
-				player.hasPermission("picturelogin.show"));
+		if (!config.getBoolean("require-permission", true))
+			return true;
+
+		return player.hasPermission("picturelogin.show");
 	}
 
 	private ImageMessage getMessage() {

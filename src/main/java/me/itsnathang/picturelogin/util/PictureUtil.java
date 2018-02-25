@@ -61,7 +61,7 @@ public class PictureUtil {
 
 		if (image == null) return null;
 
-		messages.replaceAll((message) -> replaceThings(message, player));
+		messages.replaceAll((message) -> addPlaceholders(message, player));
 
 		return config.getMessage(messages, image);
 	}
@@ -77,19 +77,19 @@ public class PictureUtil {
 
     // String Utility Functions
 
-	private String replaceThings(String m, Player player) {
-		m = ChatColor.translateAlternateColorCodes('&', m);
-		m = m.replace("%pname%", player.getName());
-		m = m.replace("%uuid%", player.getUniqueId().toString());
-		m = m.replace("%online%", String.valueOf(plugin.getServer().getOnlinePlayers().size()));
-		m = m.replace("%max%", String.valueOf(plugin.getServer().getMaxPlayers()));
-		m = m.replace("%motd%", plugin.getServer().getMotd());
-		m = m.replace("%displayname%", player.getDisplayName());
+	private String addPlaceholders(String msg, Player player) {
+		msg = ChatColor.translateAlternateColorCodes('&', msg);
+		msg = msg.replace("%pname%", player.getName());
+		msg = msg.replace("%uuid%", player.getUniqueId().toString());
+		msg = msg.replace("%online%", String.valueOf(plugin.getServer().getOnlinePlayers().size()));
+		msg = msg.replace("%max%", String.valueOf(plugin.getServer().getMaxPlayers()));
+		msg = msg.replace("%motd%", plugin.getServer().getMotd());
+		msg = msg.replace("%displayname%", player.getDisplayName());
 
 		if (Hooks.PLACEHOLDER_API)
-			m = PlaceholderAPI.setPlaceholders(player, m);
+			msg = PlaceholderAPI.setPlaceholders(player, msg);
 
-		return m;
+		return msg;
 	}
 
     private void clearChat(Player player) {

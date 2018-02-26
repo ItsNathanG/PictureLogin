@@ -22,7 +22,7 @@ public class PictureLogin extends JavaPlugin {
 		configManager = new ConfigManager(this);
 
 		// Register Plugin Hooks
-		new Hooks(getServer().getPluginManager(), getLogger());
+		new Hooks(getServer().getPluginManager(), configManager, getLogger());
 
 		// Initialize Picture Utility
 		pictureUtil = new PictureUtil(this);

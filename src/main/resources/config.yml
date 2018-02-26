@@ -164,6 +164,16 @@ url: 'https://minepic.org/avatar/8/%uuid%'
 require-permission: true
 
 #############
+# Hook Plugins
+########
+# Set to false to not allow Picture Login
+# to hook into certain plugins.
+
+hooks:
+  PlaceholderAPI: true
+  AuthMe: true
+
+#############
 # Metrics
 ########
 # Allow this plugin to send anonymous metrics

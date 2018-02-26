@@ -148,7 +148,7 @@ character: 'BLOCK'
 # %uuid%   - Joined player's UUID
 # %pname%  - Joined player's Username
 
-url: 'https://crafatar.com/avatars/%uuid%.png?size=8&overlay'
+url: 'https://minepic.org/avatar/8/%pname%'
 
 #############
 # Require Permission

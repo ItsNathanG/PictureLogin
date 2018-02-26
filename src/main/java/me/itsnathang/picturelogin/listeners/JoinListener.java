@@ -86,14 +86,12 @@ public class JoinListener implements Listener {
 
 			@Override
 			public void run() {
-				// Stop if player doesn't exist anymore
-				if (player == null) {
-					plugin.getLogger().info("Could not access player.");
+				// Stop if player left the server
+				if (player == null || !player.isOnline()) 
 					this.cancel();
-				}
+
 				// Check for authentication
 				if (AuthMeApi.getInstance().isAuthenticated(player)) {
-					plugin.getLogger().info("Sending picture message for " + player.getName());
 					sendImage();
 					this.cancel();
 				}

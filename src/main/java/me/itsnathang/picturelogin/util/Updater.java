@@ -12,7 +12,7 @@ import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class Updater {
 
-     public Updater(Logger log, String current_version) {
+     public Updater(Logger log, String currentVersion) {
         final String USER_AGENT = "PictureLogin Plugin";
         final String PLUGIN_ID = "4514";
 
@@ -27,8 +27,8 @@ public class Updater {
             String latest_version = jsonObject.get("name").toString().replace("\"", "");
 
             // Compare current plugin version with downloaded one
-            if (!current_version.equalsIgnoreCase(latest_version)) {
-                log.info(tl("update_available").replace("%current%", current_version).replace("%new%", latest_version));
+            if (!currentVersion.equalsIgnoreCase(latest_version)) {
+                log.info(tl("update_available").replace("%current%", currentVersion).replace("%new%", latest_version));
                 log.info(tl("update_available_download"));
             }
 

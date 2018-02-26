@@ -26,7 +26,7 @@ public class JoinListener implements Listener {
 		this.pictureUtil = plugin.getPictureUtil();
 	}
 
-	@EventHandler (priority = EventPriority.LOW)
+	@EventHandler (priority = EventPriority.HIGH)
 	public void onJoin(PlayerJoinEvent event) {
 		this.player = event.getPlayer();
 
@@ -87,7 +87,7 @@ public class JoinListener implements Listener {
 			@Override
 			public void run() {
 				// Stop if player left the server
-				if (player == null || !player.isOnline()) 
+				if (player == null || !player.isOnline())
 					this.cancel();
 
 				// Check for authentication

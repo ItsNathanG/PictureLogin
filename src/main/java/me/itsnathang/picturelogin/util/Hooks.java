@@ -5,8 +5,8 @@ import org.bukkit.plugin.PluginManager;
 import java.util.logging.Logger;
 
 public class Hooks {
-    private static PluginManager plugins;
-    private static Logger logger;
+    private PluginManager plugins;
+    private Logger logger;
 
     public static boolean AUTHME;
     public static boolean PLACEHOLDER_API;
@@ -19,7 +19,7 @@ public class Hooks {
         hookPlaceHolderAPI();
     }
 
-    private static boolean hookPlugin(String plugin) {
+    private boolean hookPlugin(String plugin) {
         if (!plugins.isPluginEnabled(plugin))
             return false;
 
@@ -27,11 +27,11 @@ public class Hooks {
         return true;
     }
 
-    private static void hookAuthMe() {
+    private void hookAuthMe() {
         AUTHME = hookPlugin("AuthMe");
     }
 
-    private static void hookPlaceHolderAPI() {
+    private void hookPlaceHolderAPI() {
         PLACEHOLDER_API = hookPlugin("PlaceholderAPI");
     }
 }

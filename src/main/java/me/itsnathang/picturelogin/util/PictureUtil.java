@@ -92,7 +92,7 @@ public class PictureUtil {
 		return msg;
 	}
 
-    private void clearChat(Player player) {
+    public void clearChat(Player player) {
         for (int i = 0; i < 20; i++) {
             player.sendMessage("");
         }

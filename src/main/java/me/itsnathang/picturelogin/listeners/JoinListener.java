@@ -52,6 +52,9 @@ public class JoinListener implements Listener {
 
 		// send only to the player that joined?
 		if (config.getBoolean("player-only", true)) {
+			if (config.getBoolean("clear-chat", false))
+				pictureUtil.clearChat(player);
+
 			pictureMessage.sendToPlayer(player);
 			return;
 		}

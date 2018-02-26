@@ -26,7 +26,7 @@ public class JoinListener implements Listener {
 		this.pictureUtil = plugin.getPictureUtil();
 	}
 
-	@EventHandler
+	@EventHandler (priority = EventPriority.LOW)
 	public void onJoin(PlayerJoinEvent event) {
 		this.player = event.getPlayer();
 

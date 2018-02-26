@@ -44,13 +44,22 @@ public class ConfigManager {
 	}
 	
 	public ImageMessage getMessage(List<String> messages, BufferedImage image) {
-		ImageMessage imageMessage = new ImageMessage(image, 8, getChar());
-		String[] msg = new String[messages.size()];
+		int imageDimensions = 8, count = 0;
+		ImageMessage imageMessage = new ImageMessage(image, imageDimensions, getChar());
+		String[] msg = new String[imageDimensions];
+
+		for (String message : messages) {
+			msg[count++] = message;
+		}
+
+		while (count < imageDimensions) {
+			msg[count++] = "";
+		}
 
 		if (config.getBoolean("center-text", false))
-			return imageMessage.appendCenteredText(messages.toArray(msg));
+			return imageMessage.appendCenteredText(msg);
 
-		return imageMessage.appendText(messages.toArray(msg));
+		return imageMessage.appendText(msg);
 	}
 
 	public boolean getBoolean(String key) {

@@ -95,6 +95,10 @@
                             <pattern>org.bstats</pattern>
                             <shadedPattern>me.itsnathang.picturelogin.util</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>com.bobacadodl</pattern>
+                            <shadedPattern>me.itsnathang.picturelogin.util</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>

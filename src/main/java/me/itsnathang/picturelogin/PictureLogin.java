@@ -38,7 +38,8 @@ public class PictureLogin extends JavaPlugin {
 		getCommand("picturelogin").setExecutor(new BaseCommand(this));
 
 		// Update Checker
-		new Updater(getLogger(), getDescription().getVersion());
+		if (configManager.getBoolean("update-check", true))
+			new Updater(getLogger(), getDescription().getVersion());
 
 		// bStats integration
 		if (configManager.getBoolean("metrics", true))

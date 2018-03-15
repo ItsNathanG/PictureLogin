@@ -2,7 +2,9 @@ package me.itsnathang.picturelogin.listeners;
 
 import com.bobacadodl.imgmessage.ImageMessage;
 import fr.xephi.authme.api.v3.AuthMeApi;
+import javafx.scene.input.PickResult;
 import me.itsnathang.picturelogin.util.Hooks;
+import me.itsnathang.picturelogin.util.PictureWrapper;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -42,45 +44,6 @@ public class JoinListener implements Listener {
 		sendImage();
 	}
 
-	private void sendImage() {
-		// only show message for players with picturelogin.show permission
-		if(!checkPermission()) return;
-
-		ImageMessage pictureMessage = getMessage();
-
-		if (pictureMessage == null) return;
-
-		// send only to the player that joined?
-		if (config.getBoolean("player-only", true)) {
-			if (config.getBoolean("clear-chat", false))
-				pictureUtil.clearChat(player);
-
-			pictureMessage.sendToPlayer(player);
-			return;
-		}
-
-		pictureUtil.sendOutPictureMessage(pictureMessage);
-	}
-
-	private boolean checkPermission() {
-		if (!config.getBoolean("require-permission", true))
-			return true;
-
-		return player.hasPermission("picturelogin.show");
-	}
-
-	private ImageMessage getMessage() {
-		String msgType;
-
-		// if it's a player's first time and feature is enabled, show different message
-		if (config.getBoolean("show-first-join", true) && !player.hasPlayedBefore())
-			msgType = "first-join-messages";
-		else
-			msgType = "messages";
-
-		return pictureUtil.createPictureMessage(player, config.getStringList(msgType));
-	}
-
 	private void authMeLogin() {
 		new BukkitRunnable() {
 
@@ -98,5 +61,14 @@ public class JoinListener implements Listener {
 			}
 
 		}.runTaskTimer(plugin, 0L, 20L);
+	}
+
+	private void sendImage() {
+		PictureWrapper wrapper = new PictureWrapper(plugin, player);
+
+		if (config.getBoolean("async", true))
+			wrapper.runTaskAsynchronously(plugin);
+		else
+			wrapper.runTask(plugin);
 	}
 }

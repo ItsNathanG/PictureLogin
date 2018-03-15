@@ -154,6 +154,15 @@ url: 'https://minepic.org/avatar/8/%uuid%'
 # url: 'https://minepic.org/avatar/8/%pname%'
 
 #############
+# Async
+########
+# Setting to true makes the picture generate
+# on an async thread. This has less performance
+# impact, but may delay the picture message.
+
+async: true
+
+#############
 # Require Permission
 ########
 # Set to false to show the message

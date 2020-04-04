@@ -10,7 +10,7 @@ import me.itsnathang.picturelogin.util.PictureUtil;
 import me.itsnathang.picturelogin.util.Updater;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bstats.bukkit.MetricsLite;
+import org.bstats.bukkit.Metrics;
 
 public class PictureLogin extends JavaPlugin {
 	private ConfigManager configManager;
@@ -43,7 +43,7 @@ public class PictureLogin extends JavaPlugin {
 
 		// bStats integration
 		if (configManager.getBoolean("metrics", true))
-			new MetricsLite(this);
+			new Metrics(this, 2225);
 	}
 
 	public ConfigManager getConfigManager() {

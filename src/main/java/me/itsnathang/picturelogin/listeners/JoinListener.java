@@ -1,8 +1,6 @@
 package me.itsnathang.picturelogin.listeners;
 
-import com.bobacadodl.imgmessage.ImageMessage;
 import fr.xephi.authme.api.v3.AuthMeApi;
-import javafx.scene.input.PickResult;
 import me.itsnathang.picturelogin.util.Hooks;
 import me.itsnathang.picturelogin.util.PictureWrapper;
 import org.bukkit.entity.Player;

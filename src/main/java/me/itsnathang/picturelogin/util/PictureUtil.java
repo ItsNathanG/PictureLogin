@@ -2,6 +2,7 @@ package me.itsnathang.picturelogin.util;
 
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -32,7 +33,10 @@ public class PictureUtil {
 
 		try {
 			return new URL(url);
-		} catch (Exception e) { return null; }
+		} catch (Exception e) {
+			plugin.getLogger().warning("Could not read url from file.");
+			return null;
+		}
 	}
 	
 	private BufferedImage getImage(Player player) {
@@ -41,7 +45,11 @@ public class PictureUtil {
 		// URL Formatted correctly.
 		if (head_image != null) {
             try {
-                return ImageIO.read(head_image);
+								URLConnection connection = head_image.openConnection();
+								connection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36");
+                connection.connect();
+
+								return ImageIO.read(connection.getInputStream());
             } catch (Exception e) {
                 plugin.getLogger().warning(tl("error_retrieving_avatar"));
             }

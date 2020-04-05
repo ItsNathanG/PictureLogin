@@ -4,7 +4,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Level;
 
+import com.sun.tools.sjavac.Log;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.bobacadodl.imgmessage.ImageChar;
@@ -72,6 +75,16 @@ public class ConfigManager {
 		return config.getStringList(key);
 	}
 
-	public String getURL() { return config.getString("url"); }
+	public String getURL() {
+		String url = config.getString("url");
+
+		if (url == null) {
+			plugin.getLogger().log(Level.SEVERE, "Could not read picture url from config.yml!");
+
+			return "https://minepic.org/avatar/8/%uuid%";
+		}
+
+		return url;
+	}
 	
 }

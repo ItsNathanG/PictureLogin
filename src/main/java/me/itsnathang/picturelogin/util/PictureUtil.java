@@ -20,12 +20,12 @@ import static me.itsnathang.picturelogin.util.Translate.tl;
 public class PictureUtil {
 	private final PictureLogin plugin;
 	private ConfigManager config;
-	
+
 	public PictureUtil(PictureLogin plugin) {
 		this.plugin = plugin;
 		this.config = plugin.getConfigManager();
 	}
-	
+
 	private URL newURL(String player_uuid, String player_name) {
 		String url = config.getURL()
 				.replace("%uuid%" , player_uuid)
@@ -38,30 +38,30 @@ public class PictureUtil {
 			return null;
 		}
 	}
-	
+
 	private BufferedImage getImage(Player player) {
 		URL head_image = newURL(player.getUniqueId().toString(), player.getName());
 
 		// URL Formatted correctly.
 		if (head_image != null) {
-            try {
-								URLConnection connection = head_image.openConnection();
-								connection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36");
-                connection.connect();
+			try {
+				URLConnection connection = head_image.openConnection();
+				connection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36");
+				connection.connect();
 
-								return ImageIO.read(connection.getInputStream());
-            } catch (Exception e) {
-                plugin.getLogger().warning(tl("error_retrieving_avatar"));
-            }
+				return ImageIO.read(connection.getInputStream());
+			} catch (Exception e) {
+				plugin.getLogger().warning(tl("error_retrieving_avatar"));
+			}
 		}
 
 		// Incorrectly formatted URL or couldn't load from URL
-        try {
-		    return ImageIO.read(new FallbackPicture(plugin).get());
-        } catch (Exception e) {
-		    plugin.getLogger().warning(tl("error_fallback_img"));
-		    return null;
-        }
+		try {
+			return ImageIO.read(new FallbackPicture(plugin).get());
+		} catch (Exception e) {
+			plugin.getLogger().warning(tl("error_fallback_img"));
+			return null;
+		}
 	}
 
 	public ImageMessage createPictureMessage(Player player, List<String> messages) {
@@ -75,15 +75,15 @@ public class PictureUtil {
 	}
 
 	public void sendOutPictureMessage(ImageMessage picture_message) {
-        plugin.getServer().getOnlinePlayers().forEach((online_player) -> {
-            if (config.getBoolean("clear-chat", false))
-                clearChat(online_player);
+		plugin.getServer().getOnlinePlayers().forEach((online_player) -> {
+			if (config.getBoolean("clear-chat", false))
+				clearChat(online_player);
 
-            picture_message.sendToPlayer(online_player);
-        });
-    }
+			picture_message.sendToPlayer(online_player);
+		});
+	}
 
-    // String Utility Functions
+	// String Utility Functions
 
 	private String addPlaceholders(String msg, Player player) {
 		msg = ChatColor.translateAlternateColorCodes('&', msg);
@@ -100,10 +100,10 @@ public class PictureUtil {
 		return msg;
 	}
 
-    public void clearChat(Player player) {
-        for (int i = 0; i < 20; i++) {
-            player.sendMessage("");
-        }
-    }
-	
+	public void clearChat(Player player) {
+		for (int i = 0; i < 20; i++) {
+			player.sendMessage("");
+		}
+	}
+
 }

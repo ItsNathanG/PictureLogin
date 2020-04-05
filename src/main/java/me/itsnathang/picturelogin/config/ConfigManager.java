@@ -52,6 +52,7 @@ public class ConfigManager {
 		String[] msg = new String[imageDimensions];
 
 		for (String message : messages) {
+			if (count > msg.length) break;
 			msg[count++] = message;
 		}
 

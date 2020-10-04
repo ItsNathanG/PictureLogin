@@ -67,7 +67,7 @@ show-leave-message: false
 
 leave-messages:
     - ''
-    - '&e%pname &7has left the server!'
+    - '&e%pname% &7has left the server!'
     - ''
     - '&7» [&e%online%&7/&e%max%&7] player(s) online.'
     - '&7» &aNEW: &7Feature X added!'

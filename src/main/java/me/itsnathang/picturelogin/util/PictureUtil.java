@@ -1,6 +1,9 @@
 package me.itsnathang.picturelogin.util;
 
+import static me.itsnathang.picturelogin.util.Translate.tl;
+
 import java.awt.image.BufferedImage;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
@@ -14,8 +17,6 @@ import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.config.FallbackPicture;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-
-import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class PictureUtil {
 	private final PictureLogin plugin;
@@ -44,15 +45,15 @@ public class PictureUtil {
 
 		// URL Formatted correctly.
 		if (head_image != null) {
-			try {
-				URLConnection connection = head_image.openConnection();
-				connection.setRequestProperty("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36");
-				connection.connect();
-
-				return ImageIO.read(connection.getInputStream());
-			} catch (Exception e) {
-				plugin.getLogger().warning(tl("error_retrieving_avatar"));
-			}
+            try {
+            	//User-Agent is needed for HTTP requests
+            	HttpURLConnection connection = (HttpURLConnection) head_image.openConnection();
+            	connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+                return ImageIO.read(connection.getInputStream());
+            } catch (Exception e) {
+            	e.printStackTrace();
+                plugin.getLogger().warning(tl("error_retrieving_avatar"));
+            }
 		}
 
 		// Incorrectly formatted URL or couldn't load from URL

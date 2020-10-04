@@ -6,7 +6,7 @@
 
     <groupId>me.itsnathang</groupId>
     <artifactId>PictureLogin</artifactId>
-    <version>1.5.1</version>
+    <version>1.6</version>
     <packaging>jar</packaging>
 
     <name>Picture Login</name>
@@ -29,13 +29,17 @@
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public</url>
         </repository>
+        <repository>
+            <id>minedown-repo</id>
+            <url>https://repo.minebench.de/</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <version>1.16.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -55,6 +59,12 @@
             <artifactId>authme</artifactId>
             <version>5.5.0-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.themoep</groupId>
+            <artifactId>minedown</artifactId>
+            <version>1.6.1-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -94,6 +104,10 @@
                         <relocation>
                             <pattern>com.bobacadodl</pattern>
                             <shadedPattern>me.itsnathang.picturelogin.util</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>de.themoep.minedown</pattern>
+                            <shadedPattern>your.package.path.libraries.minedown</shadedPattern>
                         </relocation>
                     </relocations>
                     <filters>

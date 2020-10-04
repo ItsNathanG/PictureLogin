@@ -1,6 +1,6 @@
 package me.itsnathang.picturelogin.listeners;
 
-import com.bobacadodl.imgmessage.ImageMessage;
+import me.itsnathang.picturelogin.util.ImageMessage;
 import me.itsnathang.picturelogin.PictureLogin;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

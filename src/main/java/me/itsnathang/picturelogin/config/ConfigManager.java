@@ -11,7 +11,7 @@ import com.sun.tools.sjavac.Log;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.bobacadodl.imgmessage.ImageChar;
-import com.bobacadodl.imgmessage.ImageMessage;
+import me.itsnathang.picturelogin.util.ImageMessage;
 import me.itsnathang.picturelogin.PictureLogin;
 
 public class ConfigManager {

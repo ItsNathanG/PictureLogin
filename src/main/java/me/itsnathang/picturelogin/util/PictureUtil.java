@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import com.bobacadodl.imgmessage.ImageMessage;
+import me.itsnathang.picturelogin.util.ImageMessage;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.itsnathang.picturelogin.PictureLogin;
 import me.itsnathang.picturelogin.config.ConfigManager;
@@ -87,6 +87,7 @@ public class PictureUtil {
 
 	private String addPlaceholders(String msg, Player player) {
 		msg = ChatColor.translateAlternateColorCodes('&', msg);
+		
 		msg = msg.replace("%pname%", player.getName());
 		msg = msg.replace("%uuid%", player.getUniqueId().toString());
 		msg = msg.replace("%online%", String.valueOf(plugin.getServer().getOnlinePlayers().size()));

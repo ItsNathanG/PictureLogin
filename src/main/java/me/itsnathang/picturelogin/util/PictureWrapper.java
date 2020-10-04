@@ -1,6 +1,6 @@
 package me.itsnathang.picturelogin.util;
 
-import com.bobacadodl.imgmessage.ImageMessage;
+import me.itsnathang.picturelogin.util.ImageMessage;
 import me.itsnathang.picturelogin.PictureLogin;
 import me.itsnathang.picturelogin.config.ConfigManager;
 import org.bukkit.entity.Player;

@@ -1,6 +1,6 @@
 package com.bobacadodl.imgmessage;
 
-import org.bukkit.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.util.ChatPaginator;
 
@@ -132,26 +132,27 @@ public class ImageMessage {
 
     private ChatColor getClosestChatColor(Color color) {
         if (color.getAlpha() < 128) return null;
-
-        int index = 0;
-        double best = -1;
-
-        for (int i = 0; i < colors.length; i++) {
-            if (areIdentical(colors[i], color)) {
-                return ChatColor.values()[i];
-            }
-        }
-
-        for (int i = 0; i < colors.length; i++) {
-            double distance = getDistance(color, colors[i]);
-            if (distance < best || best == -1) {
-                best = distance;
-                index = i;
-            }
-        }
-
-        // Minecraft has 15 colors
-        return ChatColor.values()[index];
+        return ChatColor.of(color);
+//
+//        int index = 0;
+//        double best = -1;
+//
+//        for (int i = 0; i < colors.length; i++) {
+//            if (areIdentical(colors[i], color)) {
+//                return ChatColor.values()[i];
+//            }
+//        }
+//
+//        for (int i = 0; i < colors.length; i++) {
+//            double distance = getDistance(color, colors[i]);
+//            if (distance < best || best == -1) {
+//                best = distance;
+//                index = i;
+//            }
+//        }
+//
+//        // Minecraft has 15 colors
+//        return ChatColor.values()[index];
     }
 
     private String center(String s, int length) {

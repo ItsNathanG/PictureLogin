@@ -1,4 +1,6 @@
-Updated to Minecraft 1.18.2
+This is a popular plugin for Minecraft servers (over 50,000 downloads) that has sadly been unsupported for a while; I've updated it to Minecraft 1.18 and will be supporting future versions!
+
+If you're looking for plugin support, you can ping me on my Discord server: https://discord.gg/fGzb73sPmV
 
 Picture Login ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ItsNathanG/PictureLogin?style=flat-square)
 ===

@@ -12,9 +12,9 @@ import java.awt.image.BufferedImage;
 
 public class ImageMessage {
     private final static char TRANSPARENT_CHAR = ' ';
-    
+
     private String[] lines;
-    
+
     public ImageMessage(BufferedImage image, int height, char imgChar) {
         Color[][] chatColors = toChatColorArray(image, height);
         lines = toImgMessage(chatColors, imgChar);
@@ -39,8 +39,8 @@ public class ImageMessage {
     private BufferedImage resizeImage(BufferedImage originalImage, int width, int height) {
         AffineTransform af = new AffineTransform();
         af.scale(
-            width / (double) originalImage.getWidth(),
-            height / (double) originalImage.getHeight());
+                width / (double) originalImage.getWidth(),
+                height / (double) originalImage.getHeight());
 
         AffineTransformOp operation = new AffineTransformOp(af, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         return operation.filter(originalImage, null);
@@ -48,28 +48,27 @@ public class ImageMessage {
 
     private String[] toImgMessage(Color[][] colors, char imgchar) {
         lines = new String[colors[0].length];
-        
+
         for (int y = 0; y < colors[0].length; y++) {
             StringBuilder line = new StringBuilder();
-            for (int x = 0; x < colors.length; x++) {
-                Color color = colors[x][y];
+            for (Color[] value : colors) {
+                Color color = value[y];
                 // convert to minedown-styled color string
                 if (color != null) {
                     line.append("&")
-                        .append(colorToHex(colors[x][y]))
-                        .append("&")
-                        .append(imgchar);
-                }
-                else {
+                            .append(colorToHex(value[y]))
+                            .append("&")
+                            .append(imgchar);
+                } else {
                     line.append(TRANSPARENT_CHAR);
                 }
             }
             lines[y] = line.toString() + ChatColor.RESET;
         }
-        
+
         return lines;
     }
-    
+
     private String colorToHex(Color c) {
         return String.format("#%02x%02x%02x", c.getRed(), c.getGreen(), c.getBlue());
     }

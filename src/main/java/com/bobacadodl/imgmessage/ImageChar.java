@@ -10,7 +10,7 @@ public enum ImageChar {
     DARK_SHADE('\u2593'),
     MEDIUM_SHADE('\u2592'),
     LIGHT_SHADE('\u2591');
-    private char c;
+    private final char c;
 
     ImageChar(char c) {
         this.c = c;

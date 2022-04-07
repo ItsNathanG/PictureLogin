@@ -16,15 +16,11 @@ public class FallbackPicture {
 
         File image = new File(FALLBACK_PATH);
 
-        if (!image.exists())
+        if (!image.exists()) {
             plugin.saveResource("fallback.png", false);
+        }
 
-        if (plugin.getConfigManager().getBoolean("fallback", true))
-            image = new File(FALLBACK_PATH);
-        else
-            image = null;
-
-        return image;
+        return plugin.getConfigManager().getBoolean("fallback", true) ? new File(FALLBACK_PATH) : null;
     }
 
 }

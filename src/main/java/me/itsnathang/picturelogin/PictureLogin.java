@@ -11,6 +11,9 @@ import me.itsnathang.picturelogin.util.Updater;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bstats.bukkit.Metrics;
 
+/*
+Updated to work with Minecraft 1.18.2 by _NickV on 4/7/2022
+ */
 public class PictureLogin extends JavaPlugin {
     private ConfigManager configManager;
     private PictureUtil pictureUtil;
@@ -30,19 +33,22 @@ public class PictureLogin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new JoinListener(this), this);
 
         // (only register leave listener if enabled in config)
-        if (configManager.getBoolean("show-leave-message", false))
+        if (configManager.getBoolean("show-leave-message", false)) {
             getServer().getPluginManager().registerEvents(new QuitListener(this), this);
+        }
 
         // register /picturelogin command
         getCommand("picturelogin").setExecutor(new BaseCommand(this));
 
         // Update Checker
-        if (configManager.getBoolean("update-check", true))
+        if (configManager.getBoolean("update-check", true)) {
             new Updater(getLogger(), getDescription().getVersion());
+        }
 
         // bStats integration
-        if (configManager.getBoolean("metrics", true))
-            new Metrics(this, 2225);
+        if (configManager.getBoolean("metrics", true)) {
+            new Metrics(this, 2225); // 2225 is the bStats plugin ID for PictureLogin
+        }
     }
 
     public ConfigManager getConfigManager() {

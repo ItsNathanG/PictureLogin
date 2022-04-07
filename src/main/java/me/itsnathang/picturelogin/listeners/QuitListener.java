@@ -10,33 +10,40 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.util.PictureUtil;
 
+import java.util.List;
+
 public class QuitListener implements Listener {
-	private PictureUtil pictureUtil;
-	private ConfigManager config;
+    private final PictureUtil pictureUtil;
+    private final ConfigManager config;
 
-	public QuitListener(PictureLogin plugin) {
-		this.config = plugin.getConfigManager();
-		this.pictureUtil = plugin.getPictureUtil();
-	}
+    public QuitListener(PictureLogin plugin) {
+        this.config = plugin.getConfigManager();
+        this.pictureUtil = plugin.getPictureUtil();
+    }
 
-	@EventHandler
-	public void onQuit(PlayerQuitEvent event) {
-		if (!config.getBoolean("show-leave-message", true))
-			return;
+    @EventHandler
+    public void onQuit(PlayerQuitEvent event) {
+        if (!config.getBoolean("show-leave-message", true))
+            return;
 
-		Player player = event.getPlayer();
-		
-		if(!player.hasPermission("picturelogin.show") && config.getBoolean("require-permission", true))
-			return;
-		
-		if (config.getBoolean("block-leave-message", true))
-			event.setQuitMessage(null);
+        Player player = event.getPlayer();
 
-		ImageMessage picture_message = pictureUtil.createPictureMessage(player, config.getStringList("leave-messages"));
+        if (!player.hasPermission("picturelogin.show") && config.getBoolean("require-permission", true)) {
+            return;
+        }
 
-		if (picture_message == null) return;
+        if (config.getBoolean("block-leave-message", true)) {
+            event.setQuitMessage(null);
+        }
 
-		pictureUtil.sendOutPictureMessage(picture_message);
-	}
+        List<String> leaveMessages = config.getStringList("leave-messages");
+        var picture_message = pictureUtil.createPictureMessage(player, leaveMessages);
+
+        if (picture_message == null) {
+            return;
+        }
+
+        pictureUtil.sendOutPictureMessage(picture_message);
+    }
 
 }

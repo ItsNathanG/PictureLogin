@@ -7,14 +7,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class PictureWrapper extends BukkitRunnable {
-    private PictureUtil pictureUtil;
-    private ConfigManager config;
-    private Player player;
+    private final PictureUtil pictureUtil;
+    private final ConfigManager config;
+    private final Player player;
 
     public PictureWrapper(PictureLogin plugin, Player player) {
         this.pictureUtil = plugin.getPictureUtil();
-        this.config      = plugin.getConfigManager();
-        this.player      = player;
+        this.config = plugin.getConfigManager();
+        this.player = player;
     }
 
     @Override
@@ -23,36 +23,38 @@ public class PictureWrapper extends BukkitRunnable {
     }
 
     private boolean checkPermission() {
-        if (!config.getBoolean("require-permission", true))
+        if (!config.getBoolean("require-permission", true)) {
             return true;
+        }
 
         return player.hasPermission("picturelogin.show");
     }
 
     private ImageMessage getMessage() {
-        String msgType;
+        boolean firstTime = config.getBoolean("show-first-join", true) && !player.hasPlayedBefore();
 
         // if it's a player's first time and feature is enabled, show different message
-        if (config.getBoolean("show-first-join", true) && !player.hasPlayedBefore())
-            msgType = "first-join-messages";
-        else
-            msgType = "messages";
+        String msgType = firstTime ? "first-join-messages" : "messages";
 
         return pictureUtil.createPictureMessage(player, config.getStringList(msgType));
     }
 
     private void sendImage() {
-        // only show message for players with picturelogin.show permission
-        if(!checkPermission()) return;
+        if (!checkPermission()) { // only show message for players with picturelogin.show permission
+            return;
+        }
 
         ImageMessage pictureMessage = getMessage();
 
-        if (pictureMessage == null) return;
+        if (pictureMessage == null) {
+            return;
+        }
 
         // send only to the player that joined?
         if (config.getBoolean("player-only", true)) {
-            if (config.getBoolean("clear-chat", false))
+            if (config.getBoolean("clear-chat", false)) {
                 pictureUtil.clearChat(player);
+            }
 
             pictureMessage.sendToPlayer(player);
             return;

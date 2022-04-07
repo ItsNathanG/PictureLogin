@@ -2,9 +2,7 @@ This is a popular plugin for Minecraft servers (over 50,000 downloads) that has 
 
 If you're looking for plugin support, you can ping me on my Discord server: https://discord.gg/fGzb73sPmV
 
-![pic](https://user-images.githubusercontent.com/60233722/162335606-abeae73c-3523-4ffd-a49d-9e5e73b735a9.jpg)
-
-Picture Login ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ItsNathanG/PictureLogin?style=flat-square)
+Picture Login ![pic](https://user-images.githubusercontent.com/60233722/162335606-abeae73c-3523-4ffd-a49d-9e5e73b735a9.jpg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ItsNathanG/PictureLogin?style=flat-square)
 ===
 
 Picture Login provides a much nicer login message by displaying a picture of the player's head inside of chat.

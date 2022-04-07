@@ -45,7 +45,7 @@
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
-            <version>1.7</version>
+            <version>3.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -69,7 +69,8 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <directory>${dir}</directory>
+        <!--        <sourceDirectory>src/main/java</sourceDirectory>-->
         <defaultGoal>clean install</defaultGoal>
         <resources>
             <resource>
@@ -94,7 +95,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.3.0</version>
                 <configuration>
                     <relocations>
                         <relocation>
@@ -130,5 +131,5 @@
             </plugin>
         </plugins>
     </build>
-    
+
 </project>

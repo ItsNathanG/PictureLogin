@@ -15,9 +15,9 @@ https://www.spigotmc.org/resources/picturelogin-continued.101216/
 Credit to...
 ---
 
-The original plugin author, NathanG / ItsNathanG
-bobacadodl for his Image Message Library
-Crafatar for their avatar service
+- The original plugin author, NathanG / ItsNathanG
+- bobacadodl for his Image Message Library
+- Crafatar for their avatar service
 
 License
 ---

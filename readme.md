@@ -5,13 +5,7 @@ Picture Login ![GitHub release (latest by date)](https://img.shields.io/github/v
 
 Picture Login provides a much nicer login message by displaying a picture of the player's head inside of chat.
 
-<div align="center">
-  <img src="https://i.imgur.com/kNW94py.png">
-
-  <img src="https://bstats.org/signatures/bukkit/PictureLogin.svg">
-</div>
-
-It is a plugin for [Spigot](http://www.spigotmc.org/) and you can find further information [here, on it's plugin page](http://www.spigotmc.org/resources/picture-login.4514/).
+For more information, check out the Spigot page: https://www.spigotmc.org/resources/picturelogin-continued.101216/ 
 
 License
 ---

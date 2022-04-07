@@ -15,15 +15,14 @@ import me.itsnathang.picturelogin.util.PictureUtil;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class JoinListener implements Listener {
-	private PictureLogin plugin;
-	private PictureUtil pictureUtil;
-	private ConfigManager config;
+	private final PictureLogin plugin;
+	private final ConfigManager config;
 	private Player player;
 
 	public JoinListener(PictureLogin plugin) {
 		this.plugin = plugin;
 		this.config = plugin.getConfigManager();
-		this.pictureUtil = plugin.getPictureUtil();
+		PictureUtil pictureUtil = plugin.getPictureUtil();
 	}
 
 	@EventHandler (priority = EventPriority.HIGH)

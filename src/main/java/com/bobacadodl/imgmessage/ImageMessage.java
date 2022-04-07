@@ -1,6 +1,6 @@
 package com.bobacadodl.imgmessage;
 
-import org.bukkit.ChatColor;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.util.ChatPaginator;
 
@@ -16,25 +16,6 @@ import java.awt.image.BufferedImage;
  */
 public class ImageMessage {
     private final static char TRANSPARENT_CHAR = ' ';
-
-    private final Color[] colors = {
-            new Color(0, 0, 0),
-            new Color(0, 0, 170),
-            new Color(0, 170, 0),
-            new Color(0, 170, 170),
-            new Color(170, 0, 0),
-            new Color(170, 0, 170),
-            new Color(255, 170, 0),
-            new Color(170, 170, 170),
-            new Color(85, 85, 85),
-            new Color(85, 85, 255),
-            new Color(85, 255, 85),
-            new Color(85, 255, 255),
-            new Color(255, 85, 85),
-            new Color(255, 85, 255),
-            new Color(255, 255, 85),
-            new Color(255, 255, 255),
-    };
 
     private String[] lines;
 
@@ -92,12 +73,12 @@ public class ImageMessage {
     private String[] toImgMessage(ChatColor[][] colors, char imgchar) {
         lines = new String[colors[0].length];
         for (int y = 0; y < colors[0].length; y++) {
-            String line = "";
-            for (int x = 0; x < colors.length; x++) {
-                ChatColor color = colors[x][y];
-                line += (color != null) ? colors[x][y].toString() + imgchar : TRANSPARENT_CHAR;
+            StringBuilder line = new StringBuilder();
+            for (ChatColor[] chatColors : colors) {
+                ChatColor color = chatColors[y];
+                line.append((color != null) ? chatColors[y].toString() + imgchar : TRANSPARENT_CHAR);
             }
-            lines[y] = line + ChatColor.RESET;
+            lines[y] = line.toString() + ChatColor.RESET;
         }
         return lines;
     }
@@ -132,26 +113,7 @@ public class ImageMessage {
 
     private ChatColor getClosestChatColor(Color color) {
         if (color.getAlpha() < 128) return null;
-
-        int index = 0;
-        double best = -1;
-
-        for (int i = 0; i < colors.length; i++) {
-            if (areIdentical(colors[i], color)) {
-                return ChatColor.values()[i];
-            }
-        }
-
-        for (int i = 0; i < colors.length; i++) {
-            double distance = getDistance(color, colors[i]);
-            if (distance < best || best == -1) {
-                best = distance;
-                index = i;
-            }
-        }
-
-        // Minecraft has 15 colors
-        return ChatColor.values()[index];
+        return ChatColor.of(color);
     }
 
     private String center(String s, int length) {
@@ -165,7 +127,7 @@ public class ImageMessage {
             for (int i = 0; i < leftPadding; i++) {
                 leftBuilder.append(" ");
             }
-            return leftBuilder.toString() + s;
+            return leftBuilder + s;
         }
     }
 

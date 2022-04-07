@@ -19,7 +19,6 @@ public class BaseCommand implements CommandExecutor {
 	  
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String label, String[] args) {
-		// Permission Check
 		if (!s.hasPermission("picturelogin.main")) {
 			s.sendMessage(tl("no_permission"));
 			return false;

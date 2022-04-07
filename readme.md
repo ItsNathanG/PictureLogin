@@ -1,4 +1,4 @@
-Updated Picture Login to Minecraft 1.18.2
+Updated to Minecraft 1.18.2
 
 Picture Login ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ItsNathanG/PictureLogin?style=flat-square)
 ===

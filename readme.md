@@ -12,6 +12,13 @@ You can download the plugin here on GitHub, or over at Spigot:
 
 https://www.spigotmc.org/resources/picturelogin-continued.101216/ 
 
+Credit to...
+---
+
+The original plugin author, NathanG / ItsNathanG
+bobacadodl for his Image Message Library
+Crafatar for their avatar service
+
 License
 ---
 This plugin is licensed under the MIT License. For more information please refer to LICENSE.

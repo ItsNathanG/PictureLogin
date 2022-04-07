@@ -7,16 +7,14 @@ If you're looking for plugin support, you can ping me on my Discord server: http
 
 Picture Login provides a much nicer login message by displaying a picture of the player's head inside of chat.
 
+![pictureLogin](https://user-images.githubusercontent.com/60233722/162335735-1ed09b90-4071-4a4a-86d4-882dc9e5c14b.PNG)
+
 Obtaining the plugin
 ---
 
 You can download the plugin here on GitHub, or over at Spigot:
 
 https://www.spigotmc.org/resources/picturelogin-continued.101216/ 
-
-Example
----
-![pictureLogin](https://user-images.githubusercontent.com/60233722/162335735-1ed09b90-4071-4a4a-86d4-882dc9e5c14b.PNG)
 
 Credit to...
 ---

@@ -11,13 +11,6 @@ Picture Login creates a fancy login message by displaying a picture of the playe
 
 ![pictureLogin](https://user-images.githubusercontent.com/60233722/162335735-1ed09b90-4071-4a4a-86d4-882dc9e5c14b.PNG)
 
-Obtaining the plugin
----
-
-You can download the plugin here on GitHub, or over at Spigot:
-
-https://www.spigotmc.org/resources/picturelogin-continued.101216/ 
-
 Credit to...
 ---
 

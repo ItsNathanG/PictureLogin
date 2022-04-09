@@ -26,7 +26,7 @@ public class ConfigManager {
         File conf = new File(plugin.getDataFolder() + File.separator + "config.yml");
 
         if (!conf.exists()) {
-            plugin.saveResource("config.yml", true);
+            plugin.saveResource("config.yml", true); // Create new config
         }
 
         config = YamlConfiguration.loadConfiguration(conf);
@@ -60,6 +60,8 @@ public class ConfigManager {
 
         return imageMessage.appendText(msg);
     }
+
+    public long getLong(String key) { return config.getLong(key); }
 
     public boolean getBoolean(String key) {
         return config.getBoolean(key);

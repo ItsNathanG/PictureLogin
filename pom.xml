@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.itsnathang</groupId>
-    <artifactId>PictureLogin</artifactId>
-    <version>1.6</version>
+    <groupId>me.nickv</groupId>
+    <artifactId>PictureLogin-Continued</artifactId>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <name>Picture Login</name>
 
     <properties>
-        <author>NathanG</author>
+        <author>NathanG, _NickV</author>
         <mainClass>me.itsnathang.picturelogin.PictureLogin</mainClass>
     </properties>
 
@@ -23,7 +23,7 @@
         </repository>
         <repository>
             <id>placeholderapi</id>
-            <url>http://repo.extendedclip.com/content/repositories/placeholderapi/</url>
+            <url>https://repo.extendedclip.com/content/repositories/placeholderapi/</url>
         </repository>
         <repository>
             <id>CodeMC</id>
@@ -80,11 +80,12 @@
         </resources>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.1</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>10</source>
+                    <target>10</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -128,14 +129,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>10</source>
-                    <target>10</target>
-                </configuration>
             </plugin>
         </plugins>
     </build>

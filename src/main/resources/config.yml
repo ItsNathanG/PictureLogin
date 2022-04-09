@@ -76,6 +76,17 @@ leave-messages:
     - ''
 
 #############
+# Message delay
+########
+# Whether to delay the sending of all picture messages.
+#
+# This delay is in server ticks! For reference, there are 20 server ticks in 1 second.
+#
+# For example: To set a delay of 2 seconds, set message-delay to 40.
+
+message-delay: 0
+
+#############
 # Fallback
 ########
 # If enabled, then a fallback image

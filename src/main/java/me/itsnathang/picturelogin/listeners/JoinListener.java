@@ -35,10 +35,9 @@ public class JoinListener implements Listener {
 
         if (Hooks.AUTHME) {
             authMeLogin();
-            return;
+        } else {
+            sendImage();
         }
-
-        sendImage();
     }
 
     private void authMeLogin() {
@@ -63,10 +62,35 @@ public class JoinListener implements Listener {
     private void sendImage() {
         PictureWrapper wrapper = new PictureWrapper(plugin, player);
 
+        long delay = config.getLong("message-delay");
+
+        // Don't allow invalid number here
+        if (delay < 0) {
+            delay = 0;
+        }
+
         if (config.getBoolean("async", true)) {
-            wrapper.runTaskAsynchronously(plugin);
+            wrapper.runTaskLaterAsynchronously(plugin, delay);
         } else {
-            wrapper.runTask(plugin);
+            wrapper.runTaskLater(plugin, delay);
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -36,8 +36,7 @@ public class QuitListener implements Listener {
             event.setQuitMessage(null);
         }
 
-        List<String> leaveMessages = config.getStringList("leave-messages");
-        var picture_message = pictureUtil.createPictureMessage(player, leaveMessages);
+        ImageMessage picture_message = pictureUtil.getLeaveMessage(player);
 
         if (picture_message == null) {
             return;

@@ -21,7 +21,8 @@ public class Translate {
     private static String getFilteredTranslation(String key) {
         return color(messages.getString(key)
                 .replace("%prefix%", messages.getString("prefix"))
-                .replace("%new_line%", "\n"));
+                .replace("%new_line%", "\n")
+        );
     }
 
     private static String color(String message) {

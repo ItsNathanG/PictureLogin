@@ -79,11 +79,39 @@ public class PictureUtil {
 
     public void sendOutPictureMessage(ImageMessage picture_message) {
         plugin.getServer().getOnlinePlayers().forEach((online_player) -> {
-            if (config.getBoolean("clear-chat", false))
+            if (config.getBoolean("clear-chat", false)) {
                 clearChat(online_player);
+            }
 
             picture_message.sendToPlayer(online_player);
         });
+    }
+
+    public void sendImage(Player player) {
+        PictureWrapper wrapper = new PictureWrapper(plugin, player);
+
+        long delay = config.getLong("message-delay");
+
+        // Don't allow invalid number here
+        if (delay < 0) {
+            delay = 0;
+        }
+
+        if (config.getBoolean("async", true)) {
+            wrapper.runTaskLaterAsynchronously(plugin, delay);
+        } else {
+            wrapper.runTaskLater(plugin, delay);
+        }
+    }
+
+    public ImageMessage getLeaveMessage(Player player) {
+        List<String> list = config.getStringList("leave-messages");
+        return createPictureMessage(player, list);
+    }
+
+    public ImageMessage getFirstJoinMessage(Player player) {
+        List<String> list = plugin.getConfigManager().getStringList("first-join-messages");
+        return createPictureMessage(player, list);
     }
 
     /*

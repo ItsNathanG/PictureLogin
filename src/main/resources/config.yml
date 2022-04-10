@@ -22,10 +22,12 @@
 # %max%         - Maximum players
 # %motd%        - MOTD
 # %displayname% - Joined player's display name
+# %new_line%    - Create a new line on the screen
 ########
 # NOTE: You may also use variables from the plugin
 #       PlaceholderAPI if it is installed.
 
+# Do not add additional messages to this list - Max of 8 allowed (that's the length of the player head image!)
 messages:
     - ''
     - '&7Welcome to &e&lGeneric Server Name&7!'
@@ -45,6 +47,7 @@ messages:
 
 show-first-join: true
 
+# Do not add additional messages to this list - Max of 8 allowed
 first-join-messages:
     - ''
     - '&7Welcome to &e&lGeneric Server Name&7!'
@@ -65,6 +68,7 @@ first-join-messages:
 
 show-leave-message: false
 
+# Do not add additional messages to this list - Max of 8 allowed
 leave-messages:
     - ''
     - '&e%pname% &7has left the server!'

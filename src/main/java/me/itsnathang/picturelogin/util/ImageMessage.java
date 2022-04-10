@@ -1,11 +1,11 @@
 package me.itsnathang.picturelogin.util;
 
 import de.themoep.minedown.MineDown;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.bukkit.util.ChatPaginator;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -85,28 +85,12 @@ public class ImageMessage {
     public ImageMessage appendCenteredText(String... text) {
         for (int y = 0; y < lines.length; y++) {
             if (text.length > y) {
-                int len = ChatPaginator.AVERAGE_CHAT_PAGE_WIDTH - lines[y].length();
-                lines[y] = lines[y] + center(text[y], len);
+                lines[y] += StringUtils.center(text[y], lines[y].length());
             } else {
                 return this;
             }
         }
         return this;
-    }
-
-    private String center(String s, int length) {
-        if (s.length() > length) {
-            return s.substring(0, length);
-        } else if (s.length() == length) {
-            return s;
-        } else {
-            int leftPadding = (length - s.length()) / 2;
-            StringBuilder leftBuilder = new StringBuilder();
-            for (int i = 0; i < leftPadding; i++) {
-                leftBuilder.append(" ");
-            }
-            return leftBuilder.toString() + s;
-        }
     }
 
     public void sendToPlayer(Player player) {

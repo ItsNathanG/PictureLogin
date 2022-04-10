@@ -43,6 +43,7 @@ public class ConfigManager {
 
     public ImageMessage getMessage(List<String> messages, BufferedImage image) {
         int imageDimensions = 8, count = 0;
+
         ImageMessage imageMessage = new ImageMessage(image, imageDimensions, getChar());
         String[] msg = new String[imageDimensions];
 
@@ -55,13 +56,16 @@ public class ConfigManager {
             msg[count++] = "";
         }
 
-        if (config.getBoolean("center-text", false))
+        if (config.getBoolean("center-text", false)) {
             return imageMessage.appendCenteredText(msg);
-
-        return imageMessage.appendText(msg);
+        } else {
+            return imageMessage.appendText(msg);
+        }
     }
 
-    public long getLong(String key) { return config.getLong(key); }
+    public long getLong(String key) {
+        return config.getLong(key);
+    }
 
     public boolean getBoolean(String key) {
         return config.getBoolean(key);

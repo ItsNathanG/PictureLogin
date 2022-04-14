@@ -14,7 +14,7 @@ public class Updater {
 
     public Updater(Logger log, String currentVersion) {
         final String USER_AGENT = "PictureLogin Plugin";
-        final String PLUGIN_ID = "4514";
+        final String PLUGIN_ID = "101216"; // This is the Spigot plugin ID
 
         try {
             // Connect to SpiGet

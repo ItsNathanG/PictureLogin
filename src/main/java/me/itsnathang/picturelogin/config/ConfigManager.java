@@ -44,7 +44,7 @@ public class ConfigManager {
     public ImageMessage getMessage(List<String> messages, BufferedImage image) {
         int imageDimensions = 8, count = 0;
 
-        ImageMessage imageMessage = new ImageMessage(image, imageDimensions, getChar());
+        ImageMessage imageMessage = new ImageMessage(messages, image, imageDimensions, getChar());
         String[] msg = new String[imageDimensions];
 
         for (String message : messages) {

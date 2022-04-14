@@ -1,22 +1,24 @@
 package me.itsnathang.picturelogin.util;
 
-import static me.itsnathang.picturelogin.util.Translate.tl;
-
-import java.awt.image.BufferedImage;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import me.itsnathang.picturelogin.util.ImageMessage;
 import me.clip.placeholderapi.PlaceholderAPI;
 import me.itsnathang.picturelogin.PictureLogin;
 import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.config.FallbackPicture;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static me.itsnathang.picturelogin.util.Translate.tl;
 
 public class PictureUtil {
     private final PictureLogin plugin;
@@ -114,11 +116,8 @@ public class PictureUtil {
         return createPictureMessage(player, list);
     }
 
-    /*
-    Here be String utility methods
-     */
-
     private String addPlaceholders(String msg, Player player) {
+        msg = Translate.translateHexColor(msg);
         msg = ChatColor.translateAlternateColorCodes('&', msg);
 
         msg = msg.replace("%pname%", player.getName());

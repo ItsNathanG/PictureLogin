@@ -1,19 +1,16 @@
 package me.itsnathang.picturelogin.commands;
 
+import me.itsnathang.picturelogin.PictureLogin;
 import me.itsnathang.picturelogin.util.PictureUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-
-import me.itsnathang.picturelogin.PictureLogin;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static me.itsnathang.picturelogin.util.Translate.tl;
 
@@ -34,7 +31,8 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
         }
 
         if (args.length < 1) {
-            s.sendMessage(ChatColor.GREEN + "PictureLogin-Continued " + ChatColor.GRAY + "v" + ChatColor.GREEN + plugin.getDescription().getVersion() + ChatColor.GRAY + " by " + ChatColor.GREEN + "_NickVo");
+            s.sendMessage(ChatColor.GREEN + "PictureLogin " + ChatColor.GRAY + "v" + ChatColor.GREEN
+                    + plugin.getDescription().getVersion() + ChatColor.GRAY + " by " + ChatColor.GREEN + "_NickVo");
             s.sendMessage(tl("reload_config_help"));
             return true;
         }

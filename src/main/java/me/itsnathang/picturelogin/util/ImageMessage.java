@@ -9,13 +9,14 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 public class ImageMessage {
     private final static char TRANSPARENT_CHAR = ' ';
 
     private String[] lines;
 
-    public ImageMessage(BufferedImage image, int height, char imgChar) {
+    public ImageMessage(List<String> messages, BufferedImage image, int height, char imgChar) {
         Color[][] chatColors = toChatColorArray(image, height);
         lines = toImgMessage(chatColors, imgChar);
     }
@@ -85,6 +86,8 @@ public class ImageMessage {
     public ImageMessage appendCenteredText(String... text) {
         for (int y = 0; y < lines.length; y++) {
             if (text.length > y) {
+                System.out.println("String length: " + lines[y].length());
+                System.out.println("String " + lines[y]);
                 lines[y] += StringUtils.center(text[y], lines[y].length());
             } else {
                 return this;

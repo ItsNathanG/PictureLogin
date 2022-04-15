@@ -22,6 +22,6 @@ Support ![Discord](https://img.shields.io/badge/discord-Nick's%20Place-orange)
 ---
 You can reach out to me on the Spigot forums or here on GitHub, although the best way to reach me is on Discord.
 
-License ![License](https://img.shields.io/github/license/Nicholas-Vo/PictureLogin-Continued) 
+License ![License](https://img.shields.io/github/license/Nicholas-Vo/PictureLogin-Continued)(https://github.com/Nicholas-Vo/PictureLogin-Continued/blob/master/LICENSE)
 ---
 This plugin is licensed under the MIT License. For more information please refer to LICENSE.

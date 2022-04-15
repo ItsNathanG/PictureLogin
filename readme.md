@@ -18,7 +18,7 @@ Credit to...
 - bobacadodl for his Image Message Library
 - Crafatar for their avatar service
 
-Support ![Discord](https://img.shields.io/badge/discord-Nick's%20Place-orange)
+Support [![Discord](https://img.shields.io/badge/discord-Nick's%20Place-orange)](https://discord.gg/fGzb73sPmV)
 ---
 You can reach out to me on the Spigot forums or here on GitHub, although the best way to reach me is on Discord.
 

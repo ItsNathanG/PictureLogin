@@ -14,7 +14,7 @@ You can download the plugin on Spigot: https://www.spigotmc.org/resources/pictur
 Credit to...
 ---
 
-- The original plugin author, ![ItsNathanG](https://github.com/ItsNathanG)
+- The original plugin author, ItsNathanG
 - bobacadodl for his Image Message Library
 - Crafatar for their avatar service
 

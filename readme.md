@@ -9,7 +9,7 @@ PictureLogin creates a fancy login message by displaying a picture of the player
 
 Obtaining the plugin
 ---
-You can download the plugin on Spigot: https://www.spigotmc.org/resources/picturelogin-continued.101216/
+You can download the plugin over on Spigot: https://www.spigotmc.org/resources/picturelogin-continued.101216/
 
 Credit to...
 ---

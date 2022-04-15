@@ -20,7 +20,7 @@ Credit to...
 
 Support
 ---
-If you're looking for plugin support, you can ping me on my Discord server: https://discord.gg/fGzb73sPmV
+If you're looking for plugin support, you can ping me on my Discord server: ![Discord](https://img.shields.io/badge/discord-Nick's%20Place-orange)
 
 License ![License](https://img.shields.io/github/license/Nicholas-Vo/PictureLogin-Continued) 
 ---

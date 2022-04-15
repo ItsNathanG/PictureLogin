@@ -8,7 +8,6 @@ import me.itsnathang.picturelogin.util.Hooks;
 import me.itsnathang.picturelogin.util.PictureUtil;
 import me.itsnathang.picturelogin.util.Updater;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /*

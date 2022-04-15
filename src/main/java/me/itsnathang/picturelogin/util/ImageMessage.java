@@ -1,7 +1,6 @@
 package me.itsnathang.picturelogin.util;
 
 import de.themoep.minedown.MineDown;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -9,7 +8,6 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.util.Arrays;
 import java.util.List;
 
 public class ImageMessage {
@@ -57,10 +55,7 @@ public class ImageMessage {
                 Color color = value[y];
                 // convert to minedown-styled color string
                 if (color != null) {
-                    line.append("&")
-                            .append(colorToHex(value[y]))
-                            .append("&")
-                            .append(imgchar);
+                    line.append("&").append(colorToHex(value[y])).append("&").append(imgchar);
                 } else {
                     line.append(TRANSPARENT_CHAR);
                 }
@@ -87,7 +82,7 @@ public class ImageMessage {
     public ImageMessage appendCenteredText(String... text) {
         for (int y = 0; y < lines.length; y++) {
             if (text.length > y) {
-                lines[y] += StringUtils.center(text[y], lines[y].length());
+                lines[y] += centerMessage(text[y]);
             } else {
                 return this;
             }
@@ -95,9 +90,52 @@ public class ImageMessage {
         return this;
     }
 
+    /*
+    Credit to https://www.spigotmc.org/members/sirspoodles.109063/ for this method
+    https://www.spigotmc.org/threads/free-code-sending-perfectly-centered-chat-message.95872/
+     */
+    public String centerMessage(String message) {
+        if (message == null || message.equals("")) {
+            message = "";
+        }
+
+        message = ChatColor.translateAlternateColorCodes('&', message);
+
+        int messagePxSize = 0;
+        boolean previousCode = false;
+        boolean isBold = false;
+
+        for (char c : message.toCharArray()) {
+            if (c == '§') {
+                previousCode = true;
+            } else if (previousCode) {
+                previousCode = false;
+                isBold = c == 'l' || c == 'L';
+            } else {
+                var dFI = DefaultFontInfo.getDefaultFontInfo(c);
+                messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
+                messagePxSize++;
+            }
+        }
+
+        int halvedMessageSize = messagePxSize / 2;
+        int CENTER_PX = 154;
+        int toCompensate = CENTER_PX - halvedMessageSize;
+        int spaceLength = DefaultFontInfo.SPACE.getLength() + 1;
+        int compensated = 0;
+
+        StringBuilder sb = new StringBuilder();
+        while (compensated < toCompensate) {
+            sb.append(" ");
+            compensated += spaceLength;
+        }
+        return sb + message;
+    }
+
     public void sendToPlayer(Player player) {
         for (String line : lines) {
             player.spigot().sendMessage(MineDown.parse(line));
         }
     }
+
 }

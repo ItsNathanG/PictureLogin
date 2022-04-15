@@ -58,7 +58,7 @@ public class PictureUtil {
             }
         }
 
-        // Incorrectly formatted URL or couldn't load from URL
+        // Incorrectly formatted URL, or couldn't load from URL
         try {
             return ImageIO.read(new FallbackPicture(plugin).get());
         } catch (Exception e) {

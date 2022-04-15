@@ -6,9 +6,9 @@ import org.bukkit.plugin.PluginManager;
 import java.util.logging.Logger;
 
 public class Hooks {
-    private PluginManager plugins;
-    private ConfigManager config;
-    private Logger logger;
+    private final PluginManager plugins;
+    private final ConfigManager config;
+    private final Logger logger;
 
     public static boolean AUTHME;
     public static boolean PLACEHOLDER_API;

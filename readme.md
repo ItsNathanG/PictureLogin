@@ -1,6 +1,6 @@
 This is a popular plugin for Minecraft servers (over 50,000 downloads) that has sadly been unsupported for a while; I've updated it to Minecraft 1.18 and will be supporting future versions!
 
-You can download the plugin here or over on Spigot: https://www.spigotmc.org/resources/picturelogin-continued.101216/
+You can download the plugin on Spigot: https://www.spigotmc.org/resources/picturelogin-continued.101216/
 
 If you're looking for plugin support, you can ping me on my Discord server: https://discord.gg/fGzb73sPmV
 

@@ -1,6 +1,5 @@
 package me.itsnathang.picturelogin.util;
 
-//import org.bukkit.ChatColor;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 

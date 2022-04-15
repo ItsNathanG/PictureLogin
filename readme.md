@@ -4,7 +4,8 @@ You can download the plugin on Spigot: https://www.spigotmc.org/resources/pictur
 
 If you're looking for plugin support, you can ping me on my Discord server: https://discord.gg/fGzb73sPmV
 
-PictureLogin-Continued [![Version]](https://www.spigotmc.org/resources/picturelogin-continued.101216/)
+PictureLogin-Continued [![Version](https://www.spigotmc.org/resources/picturelogin-continued.101216/)](https://www.spigotmc.org/resources/picturelogin-continued.101216/)
+
 ===
 
 PictureLogin creates a fancy login message by displaying a picture of the player's head inside of chat!

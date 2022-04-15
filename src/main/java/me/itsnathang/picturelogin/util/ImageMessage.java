@@ -129,6 +129,12 @@ public class ImageMessage {
             sb.append(" ");
             compensated += spaceLength;
         }
+
+        int offset = 8; // account for the player head (8 wide)
+        for (int j = 0; j < offset; j++) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
         return sb + message;
     }
 

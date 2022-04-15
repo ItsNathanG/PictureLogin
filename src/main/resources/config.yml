@@ -120,6 +120,11 @@ clear-chat: false
 center-text: false
 
 #############
+# Center offset
+########
+#
+
+#############
 # Block join / leave messages
 ########
 # Set to true to block

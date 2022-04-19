@@ -33,7 +33,6 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
         if (args.length < 1) {
             s.sendMessage(ChatColor.GREEN + "PictureLogin " + ChatColor.GRAY + "v" + ChatColor.GREEN
                     + plugin.getDescription().getVersion() + ChatColor.GRAY + " by " + ChatColor.GREEN + "_NickVo");
-            s.sendMessage(tl("reload_config_help"));
             return true;
         }
 

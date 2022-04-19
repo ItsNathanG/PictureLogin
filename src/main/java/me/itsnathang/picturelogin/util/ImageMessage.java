@@ -8,14 +8,12 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.util.List;
 
 public class ImageMessage {
     private final static char TRANSPARENT_CHAR = ' ';
+    private String[] lines; // The 8 lines next to the playerhead
 
-    private String[] lines;
-
-    public ImageMessage(List<String> messages, BufferedImage image, int height, char imgChar) {
+    public ImageMessage(BufferedImage image, int height, char imgChar) {
         Color[][] chatColors = toChatColorArray(image, height);
         lines = toImgMessage(chatColors, imgChar);
     }
@@ -129,6 +127,12 @@ public class ImageMessage {
             sb.append(" ");
             compensated += spaceLength;
         }
+
+        int offset = 8; // account for the player head (8 wide)
+        for (int j = 0; j < offset; j++) {
+            sb.deleteCharAt(sb.length() - 1);
+        }
+
         return sb + message;
     }
 

@@ -44,11 +44,13 @@ public class ConfigManager {
     public ImageMessage getMessage(List<String> messages, BufferedImage image) {
         int imageDimensions = 8, count = 0;
 
-        ImageMessage imageMessage = new ImageMessage(messages, image, imageDimensions, getChar());
+        ImageMessage imageMessage = new ImageMessage(image, imageDimensions, getChar());
         String[] msg = new String[imageDimensions];
 
         for (String message : messages) {
-            if (count > msg.length) break;
+            if (count > msg.length) {
+                break;
+            }
             msg[count++] = message;
         }
 
@@ -65,10 +67,6 @@ public class ConfigManager {
 
     public long getLong(String key) {
         return config.getLong(key);
-    }
-
-    public boolean getBoolean(String key) {
-        return config.getBoolean(key);
     }
 
     public boolean getBoolean(String key, Boolean def) {

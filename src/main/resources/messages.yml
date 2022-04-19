@@ -13,7 +13,7 @@ no_permission: "%prefix% &cYou do not have permission to do this!"
 
 # Misc
 update_available: "New update available! Current Version: %current% New Version: %new%"
-update_available_download: "Download at https://www.spigotmc.org/resources/picture-login.4514/"
+update_available_download: "Download at https://www.spigotmc.org/resources/picturelogin-continued.101216/"
 
 # Error Messages (Printed in console.)
 error_reload_config: "Could not access the configuration file."

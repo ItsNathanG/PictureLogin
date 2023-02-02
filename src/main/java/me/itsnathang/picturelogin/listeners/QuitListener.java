@@ -1,16 +1,13 @@
 package me.itsnathang.picturelogin.listeners;
 
-import me.itsnathang.picturelogin.util.ImageMessage;
 import me.itsnathang.picturelogin.PictureLogin;
+import me.itsnathang.picturelogin.config.ConfigManager;
+import me.itsnathang.picturelogin.util.ImageMessage;
+import me.itsnathang.picturelogin.util.PictureUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import me.itsnathang.picturelogin.config.ConfigManager;
-import me.itsnathang.picturelogin.util.PictureUtil;
-
-import java.util.List;
 
 public class QuitListener implements Listener {
     private final PictureUtil pictureUtil;
@@ -27,7 +24,6 @@ public class QuitListener implements Listener {
             return;
 
         Player player = event.getPlayer();
-
         if (!player.hasPermission("picturelogin.show") && config.getBoolean("require-permission", true)) {
             return;
         }
@@ -37,7 +33,6 @@ public class QuitListener implements Listener {
         }
 
         ImageMessage picture_message = pictureUtil.getLeaveMessage(player);
-
         if (picture_message == null) {
             return;
         }

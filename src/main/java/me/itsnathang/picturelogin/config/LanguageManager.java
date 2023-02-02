@@ -21,7 +21,6 @@ public class LanguageManager {
         if (!language_file.exists()) {
             plugin.saveResource("messages.yml", false);
         }
-
         return YamlConfiguration.loadConfiguration(language_file);
     }
 

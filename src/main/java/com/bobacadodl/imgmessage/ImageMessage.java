@@ -108,7 +108,6 @@ public class ImageMessage {
         return Math.abs(c1.getRed() - c2.getRed()) <= 5 &&
                 Math.abs(c1.getGreen() - c2.getGreen()) <= 5 &&
                 Math.abs(c1.getBlue() - c2.getBlue()) <= 5;
-
     }
 
     private ChatColor getClosestChatColor(Color color) {
@@ -123,11 +122,7 @@ public class ImageMessage {
             return s;
         } else {
             int leftPadding = (length - s.length()) / 2;
-            StringBuilder leftBuilder = new StringBuilder();
-            for (int i = 0; i < leftPadding; i++) {
-                leftBuilder.append(" ");
-            }
-            return leftBuilder + s;
+            return " ".repeat(leftPadding) + s;
         }
     }
 

@@ -117,6 +117,10 @@ public class PictureUtil {
     }
 
     private String addPlaceholders(String msg, Player player) {
+        if (Hooks.PLACEHOLDER_API) {
+            msg = PlaceholderAPI.setPlaceholders(player, msg);
+        }
+
         msg = Translate.translateHexColor(msg);
         msg = ChatColor.translateAlternateColorCodes('&', msg);
 
@@ -126,10 +130,6 @@ public class PictureUtil {
         msg = msg.replace("%max%", String.valueOf(plugin.getServer().getMaxPlayers()));
         msg = msg.replace("%motd%", plugin.getServer().getMotd());
         msg = msg.replace("%displayname%", player.getDisplayName());
-
-        if (Hooks.PLACEHOLDER_API) {
-            msg = PlaceholderAPI.setPlaceholders(player, msg);
-        }
 
         return msg;
     }

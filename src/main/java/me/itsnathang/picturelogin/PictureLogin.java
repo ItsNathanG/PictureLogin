@@ -48,7 +48,6 @@ public class PictureLogin extends JavaPlugin {
         if (configManager.getBoolean("metrics", true)) {
             new Metrics(this, 14892); // 2225 is the bStats plugin ID for PictureLogin
         }
-
     }
 
     public ConfigManager getConfigManager() {

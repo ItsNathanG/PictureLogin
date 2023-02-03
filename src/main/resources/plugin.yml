@@ -1,6 +1,6 @@
 name: PictureLogin
 main: me.itsnathang.picturelogin.PictureLogin
-api-version: 1.18
+api-version: 1.19
 author: NathanG, _NickV
 description: Display a cool login message with a picture of the player's skin.
 

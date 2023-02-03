@@ -1,6 +1,7 @@
 package me.itsnathang.picturelogin.util;
 
 import de.themoep.minedown.MineDown;
+import me.itsnathang.picturelogin.PictureLogin;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -8,6 +9,7 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
 
 public class ImageMessage {
     private final static char TRANSPARENT_CHAR = ' ';
@@ -132,7 +134,10 @@ public class ImageMessage {
 
         int offset = 8; // account for the player head (8 wide)
         for (int j = 0; j < offset; j++) {
-            sb.deleteCharAt(sb.length() - 1);
+            int anIndex = sb.length() - 1;
+            if (anIndex >= 0) {
+                sb.deleteCharAt(anIndex);
+            }
         }
 
         return sb + message;

@@ -4,9 +4,6 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.itsnathang.picturelogin.PictureLogin;
 import me.itsnathang.picturelogin.config.ConfigManager;
 import me.itsnathang.picturelogin.config.FallbackPicture;
-import net.kyori.adventure.audience.Audience;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -15,10 +12,8 @@ import java.awt.image.BufferedImage;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static me.itsnathang.picturelogin.util.Translate.tl;
+import static me.itsnathang.picturelogin.util.Translate.translateString;
 
 public class PictureUtil {
     private final PictureLogin plugin;
@@ -54,7 +49,7 @@ public class PictureUtil {
                 return ImageIO.read(connection.getInputStream());
             } catch (Exception e) {
                 e.printStackTrace();
-                plugin.getLogger().warning(tl("error_retrieving_avatar"));
+                plugin.getLogger().warning(translateString("error_retrieving_avatar"));
             }
         }
 
@@ -62,7 +57,7 @@ public class PictureUtil {
         try {
             return ImageIO.read(new FallbackPicture(plugin).get());
         } catch (Exception e) {
-            plugin.getLogger().warning(tl("error_fallback_img"));
+            plugin.getLogger().warning(translateString("error_fallback_img"));
             return null;
         }
     }

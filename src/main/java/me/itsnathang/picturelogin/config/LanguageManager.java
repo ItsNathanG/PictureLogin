@@ -16,12 +16,12 @@ public class LanguageManager {
     }
 
     private YamlConfiguration loadLanguage() {
-        File language_file = new File(plugin.getDataFolder() + File.separator + "messages.yml");
+        File yml = new File(plugin.getDataFolder() + File.separator + "messages.yml");
 
-        if (!language_file.exists()) {
+        if (!yml.exists()) {
             plugin.saveResource("messages.yml", false);
         }
-        return YamlConfiguration.loadConfiguration(language_file);
+        return YamlConfiguration.loadConfiguration(yml);
     }
 
     public void reloadLanguage() {

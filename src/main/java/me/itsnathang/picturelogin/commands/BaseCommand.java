@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-import static me.itsnathang.picturelogin.util.Translate.tl;
+import static me.itsnathang.picturelogin.util.Translate.translateString;
 
 public class BaseCommand implements CommandExecutor, TabCompleter {
     private final PictureLogin plugin;
@@ -26,7 +26,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender s, Command cmd, String label, String[] args) {
         if (!s.hasPermission("picturelogin.main")) {
-            s.sendMessage(tl("no_permission"));
+            s.sendMessage(translateString("no_permission"));
             return true;
         }
 
@@ -38,7 +38,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
 
         if (args[0].equalsIgnoreCase("reload")) {
             plugin.getConfigManager().reloadConfig();
-            s.sendMessage(tl("reload_config"));
+            s.sendMessage(translateString("reload_config"));
             return true;
         }
 
@@ -67,7 +67,7 @@ public class BaseCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         if (!sender.hasPermission("picturelogin.main")) {
-            return List.of(); // Empty list to stop further tab completion
+            return List.of();
         }
 
         if (args.length == 1) {

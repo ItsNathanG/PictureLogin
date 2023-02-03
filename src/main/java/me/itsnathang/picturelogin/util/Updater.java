@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Logger;
 
-import static me.itsnathang.picturelogin.util.Translate.tl;
+import static me.itsnathang.picturelogin.util.Translate.translateString;
 
 public class Updater {
 
@@ -30,12 +30,12 @@ public class Updater {
 
             // Compare current plugin version with downloaded one
             if (!currentVersion.equalsIgnoreCase(latest_version)) {
-                log.info(tl("update_available").replace("%current%", currentVersion).replace("%new%", latest_version));
-                log.info(tl("update_available_download"));
+                log.info(translateString("update_available").replace("%current%", currentVersion).replace("%new%", latest_version));
+                log.info(translateString("update_available_download"));
             }
 
         } catch (Exception e) {
-            log.warning(tl("error_update_check"));
+            log.warning(translateString("error_update_check"));
         }
     }
 

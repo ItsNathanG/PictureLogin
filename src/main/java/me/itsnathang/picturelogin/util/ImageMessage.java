@@ -36,9 +36,11 @@ public class ImageMessage {
 
     private BufferedImage resizeImage(BufferedImage originalImage, int width, int height) {
         AffineTransform af = new AffineTransform();
-        af.scale(
-                width / (double) originalImage.getWidth(),
-                height / (double) originalImage.getHeight());
+
+        double newWidth = width / (double) originalImage.getWidth();
+        double newHeight = height / (double) originalImage.getHeight();
+
+        af.scale(newWidth, newHeight);
 
         AffineTransformOp operation = new AffineTransformOp(af, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         return operation.filter(originalImage, null);

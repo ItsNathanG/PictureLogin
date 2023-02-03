@@ -10,6 +10,10 @@ import me.itsnathang.picturelogin.util.Updater;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
+// TODO
+
+// Setting any of the messages too long will result in the picture not displaying and an error in the server console
+
 /*
 Updated to work with Minecraft 1.18.2 by _NickV on 4/7/2022
  */

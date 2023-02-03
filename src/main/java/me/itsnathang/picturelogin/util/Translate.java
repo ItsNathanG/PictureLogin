@@ -30,7 +30,9 @@ public class Translate {
     public static String translateHexColor(final String message) {
         final char colorChar = ChatColor.COLOR_CHAR;
 
-        Pattern pattern = Pattern.compile("(#[a-fA-F0-9]{6})");
+        // Added optional catch for & because some plugins (Essentials?) require
+        // or allow the & symbol before hex.
+        Pattern pattern = Pattern.compile("&?(#[a-fA-F0-9]{6})");
         final Matcher matcher = pattern.matcher(message);
         final StringBuilder buffer = new StringBuilder(message.length() + 4 * 8);
 

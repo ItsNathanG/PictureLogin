@@ -14,10 +14,6 @@ public class Translate {
     }
 
     public static String translateString(String key) {
-        return getFilteredTranslation(key);
-    }
-
-    private static String getFilteredTranslation(String key) {
         final String message = messages.getString(key)
                 .replace("%prefix%", messages.getString("prefix"))
                 .replace("%new_line%", "\n");
@@ -30,7 +26,7 @@ public class Translate {
 
         // Added optional catch for & because some plugins (Essentials?) require
         // or allow the & symbol before hex.
-        Pattern pattern = Pattern.compile("&?(#[a-fA-F0-9]{6})");
+        Pattern pattern = Pattern.compile("&?#([a-fA-F0-9]{6})");
         final Matcher matcher = pattern.matcher(message);
         final StringBuilder buffer = new StringBuilder(message.length() + 4 * 8);
 

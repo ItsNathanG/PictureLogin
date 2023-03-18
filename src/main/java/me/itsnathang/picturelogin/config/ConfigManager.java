@@ -1,91 +1,92 @@
 package me.itsnathang.picturelogin.config;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.logging.Level;
-
-import com.sun.tools.sjavac.Log;
+import com.bobacadodl.imgmessage.ImageChar;
+import me.itsnathang.picturelogin.PictureLogin;
+import me.itsnathang.picturelogin.util.ImageMessage;
 import org.bukkit.configuration.file.YamlConfiguration;
 
-import com.bobacadodl.imgmessage.ImageChar;
-import me.itsnathang.picturelogin.util.ImageMessage;
-import me.itsnathang.picturelogin.PictureLogin;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.List;
+import java.util.logging.Level;
 
 public class ConfigManager {
-	private final PictureLogin plugin;
-	private LanguageManager languageManager;
-	private YamlConfiguration config;
-	
-	public ConfigManager(PictureLogin plugin) {
-		this.plugin = plugin;
+    private final PictureLogin plugin;
+    private final LanguageManager languageManager;
+    private YamlConfiguration config;
 
-		languageManager = new LanguageManager(plugin);
-		
-		reloadConfig();
-	}
-	
-	public void reloadConfig() {
-		File conf = new File(plugin.getDataFolder() + File.separator + "config.yml");
-		
-		if(!conf.exists())
-			plugin.saveResource("config.yml", true);
-        
+    public ConfigManager(PictureLogin plugin) {
+        this.plugin = plugin;
+
+        languageManager = new LanguageManager(plugin);
+        reloadConfig();
+    }
+
+    public void reloadConfig() {
+        File conf = new File(plugin.getDataFolder() + File.separator + "config.yml");
+
+        if (!conf.exists()) {
+            plugin.saveResource("config.yml", true); // Create new config
+        }
+
         config = YamlConfiguration.loadConfiguration(conf);
+        languageManager.reloadLanguage();
+    }
 
-		languageManager.reloadLanguage();
-	}
-	
-	private char getChar() {
-		try {
-			return ImageChar.valueOf(config.getString("character").toUpperCase()).getChar();
-		} catch (IllegalArgumentException e) {
-			return ImageChar.BLOCK.getChar();
-		}
-	}
-	
-	public ImageMessage getMessage(List<String> messages, BufferedImage image) {
-		int imageDimensions = 8, count = 0;
-		ImageMessage imageMessage = new ImageMessage(image, imageDimensions, getChar());
-		String[] msg = new String[imageDimensions];
+    private char getChar() {
+        try {
+            return ImageChar.valueOf(config.getString("character").toUpperCase()).getChar();
+        } catch (IllegalArgumentException e) {
+            return ImageChar.BLOCK.getChar();
+        }
+    }
 
-		for (String message : messages) {
-			if (count > msg.length) break;
-			msg[count++] = message;
-		}
+    public ImageMessage getMessage(List<String> messages, BufferedImage image) {
+        int imageDimensions = 8, count = 0;
 
-		while (count < imageDimensions) {
-			msg[count++] = "";
-		}
+        ImageMessage imageMessage = new ImageMessage(image, imageDimensions, getChar());
+        String[] msg = new String[imageDimensions];
 
-		if (config.getBoolean("center-text", false))
-			return imageMessage.appendCenteredText(msg);
+        for (String message : messages) {
+            if (count > msg.length) {
+                break;
+            }
+            msg[count++] = message;
+        }
 
-		return imageMessage.appendText(msg);
-	}
+        while (count < imageDimensions) {
+            msg[count++] = "";
+        }
 
-	public boolean getBoolean(String key) {
-		return config.getBoolean(key);
-	}
+        if (config.getBoolean("center-text", false)) {
+            return imageMessage.appendCenteredText(msg);
+        } else {
+            return imageMessage.appendText(msg);
+        }
+    }
 
-	public boolean getBoolean(String key, Boolean def) { return config.getBoolean(key, def); }
+    public long getLong(String key) {
+        return config.getLong(key);
+    }
 
-	public List<String> getStringList(String key) {
-		return config.getStringList(key);
-	}
+    public boolean getBoolean(String key, Boolean def) {
+        return config.getBoolean(key, def);
+    }
 
-	public String getURL() {
-		String url = config.getString("url");
+    public List<String> getStringList(String key) {
+        return config.getStringList(key);
+    }
 
-		if (url == null) {
-			plugin.getLogger().log(Level.SEVERE, "Could not read picture url from config.yml!");
+    public String getURL() {
+        String url = config.getString("url");
 
-			return "https://minepic.org/avatar/8/%uuid%";
-		}
+        if (url == null) {
+            plugin.getLogger().log(Level.SEVERE, "Could not read picture url from config.yml!");
 
-		return url;
-	}
-	
+            return "https://minepic.org/avatar/8/%uuid%";
+        }
+
+        return url;
+    }
+
 }

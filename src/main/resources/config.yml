@@ -13,8 +13,7 @@
 # Messsages
 ########
 # Each message is a line, leave blank for a blank line
-# (If image height is 8, you can have eight lines; etc.)
-# Chat codes supported.
+# Chat codes supported
 ########
 # Variables:
 # %pname%       - Joined player's name (no formatting)
@@ -22,10 +21,13 @@
 # %max%         - Maximum players
 # %motd%        - MOTD
 # %displayname% - Joined player's display name
+
 ########
 # NOTE: You may also use variables from the plugin
 #       PlaceholderAPI if it is installed.
 
+# Do not add additional messages to this list!
+# Max of 8 allowed (that's the length of the player head image)
 messages:
     - ''
     - '&7Welcome to &e&lGeneric Server Name&7!'
@@ -45,6 +47,7 @@ messages:
 
 show-first-join: true
 
+# Do not add additional messages to this list - Max of 8 allowed
 first-join-messages:
     - ''
     - '&7Welcome to &e&lGeneric Server Name&7!'
@@ -65,6 +68,7 @@ first-join-messages:
 
 show-leave-message: false
 
+# Do not add additional messages to this list - Max of 8 allowed
 leave-messages:
     - ''
     - '&e%pname% &7has left the server!'
@@ -74,6 +78,17 @@ leave-messages:
     - ''
     - '&7» &aPictureLogin &7by &aNathanG&7.'
     - ''
+
+#############
+# Message delay
+########
+# Whether to delay the sending of all picture messages.
+#
+# This delay is in server ticks! For reference, there are 20 server ticks in 1 second.
+#
+# For example: To set a delay of 2 seconds, set message-delay to 40.
+
+message-delay: 0
 
 #############
 # Fallback
@@ -98,8 +113,7 @@ clear-chat: false
 #############
 # Center Text
 ########
-# Whether or not to center
-# the text beside the image.
+# Whether to center the text beside the image.
 # Acceptable: [true|false]
 
 center-text: false
@@ -141,7 +155,7 @@ character: 'BLOCK'
 # URL
 ######## 
 # Where to get the picture from.
-# By default it uses crafatar.
+# By default, this is set to minepic.org
 # You should probably leave this where it is.
 ########
 # Variables:

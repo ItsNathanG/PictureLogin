@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 
 public class LanguageManager {
-    private PictureLogin plugin;
+    private final PictureLogin plugin;
 
     LanguageManager(PictureLogin plugin) {
         this.plugin = plugin;
@@ -16,18 +16,16 @@ public class LanguageManager {
     }
 
     private YamlConfiguration loadLanguage() {
-        File language_file = new File(plugin.getDataFolder() + File.separator + "messages.yml");
+        File yml = new File(plugin.getDataFolder() + File.separator + "messages.yml");
 
-        if (!language_file.exists())
+        if (!yml.exists()) {
             plugin.saveResource("messages.yml", false);
-
-        return YamlConfiguration.loadConfiguration(language_file);
+        }
+        return YamlConfiguration.loadConfiguration(yml);
     }
 
     public void reloadLanguage() {
-        YamlConfiguration messages = loadLanguage();
-
-        Translate.messages = messages;
+        Translate.messages = loadLanguage();
     }
 
 }

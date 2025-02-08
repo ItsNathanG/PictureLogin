@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 
-import com.sun.tools.sjavac.Log;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import com.bobacadodl.imgmessage.ImageChar;
